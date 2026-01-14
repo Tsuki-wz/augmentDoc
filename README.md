@@ -1,5 +1,5 @@
 # VsCode / IDEA 使用 AugmentProxy 操作手顺
-##QQ群
+## QQ群
 ![](images/QQ.jpg)
 
 ## 一、VsCode 使用说明
