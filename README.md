@@ -14,7 +14,7 @@ https://www.augmentproxy.com/
 
 ---
 
-### 2. 执行 VSCode 补丁
+### 2. 执行 VSCode 补丁 🛑管理员身份运行命令
 
 请按照 **VSCode 补丁页面**中的说明执行补丁，补丁有两种执行方式：
 
@@ -97,9 +97,10 @@ powershell -NoProfile -ExecutionPolicy Bypass -File ./patch_augment_windows.ps1
 
 ---
 
-## 三、注意事项
+## 三、🛑 注意事项
 
-- 补丁仅适用于 **VSCode（Windows）**
-- 执行补丁前请确保已关闭 VSCode
-- 若 PowerShell 权限受限，请使用方式二（Bypass 模式）
+- 🛑补丁仅适用于 **VSCode或者其他基于VsCode开发的IDE**
+- 🛑管理员身份运行命令
+- 🛑执行补丁前请确保已关闭 VSCode
+- 🛑若 PowerShell 权限受限，请使用方式二（Bypass 模式）
 
