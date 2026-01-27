@@ -85,6 +85,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File ./patch_augment_windows.ps1
 开始使用：
 
 ![](images/vs6.png)
+![](images/ACE.png)
 
 ---
 
