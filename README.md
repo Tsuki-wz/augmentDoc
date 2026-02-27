@@ -1,8 +1,8 @@
 # VsCode / IDEA 使用 AugmentProxy 操作手顺
 ## QQ群
-![](images/QQ.jpg)
-## 微信群
-![](images/wecat.jpg)
+**1037147027**
+## 微信
+w1345246221
 
 ## 一、VsCode 使用说明
 
