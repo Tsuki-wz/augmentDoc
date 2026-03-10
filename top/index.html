@@ -1,0 +1,3154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI 编程工具安装教程，包含 Claude Code, Opencode 和 CC-Switch 的详细安装步骤、环境变量配置及常见问题解决方法。">
+    <meta name="keywords" content="Claude Code, Opencode, CC-Switch, AI编程工具, 安装教程, 环境变量, Anthropic, Gemini, Codex">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="AI 编程工具安装教程">
+    <meta property="og:description" content="极简暗黑科技风的 AI 编程工具安装指南，支持 Claude Code, Opencode 等多款工具。">
+    <meta property="og:image" content="https://claudecode.boomreal.ai/assets/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="AI 编程工具安装教程">
+    <meta property="twitter:description" content="极简暗黑科技风的 AI 编程工具安装指南，支持 Claude Code, Opencode 等多款工具。">
+    <meta property="twitter:image" content="https://claudecode.boomreal.ai/assets/og-image.jpg">
+
+    <title>AI 编程工具安装教程</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Prism.js for syntax highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css" rel="stylesheet">
+
+    <!-- Main Styles -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <span class="logo-icon">🤖</span>
+                <h1 data-i18n="header.title">AI 编程工具安装教程</h1>
+            </div>
+            <!-- 主题跟随父页面，无需独立切换器 -->
+        </div>
+    </header>
+
+    <!-- Support Bar -->
+    <div class="support-bar">
+        <div class="support-content">
+            <!-- CN mode -->
+            <div class="support-text mode-cn">
+                <span class="support-icon">💬</span>
+                <span><span data-i18n="support.text">售后技术支持 微信号：</span><strong data-i18n="support.wechatId">kissman911</strong></span>
+            </div>
+            <div class="support-qr mode-cn" id="supportQr">
+                <img loading="lazy" src="images/wechat-qr.jpg" alt="微信二维码" class="qr-thumbnail">
+                <span class="qr-hint" data-i18n="support.qrHint">点击放大</span>
+            </div>
+            <!-- Global mode -->
+            <div class="support-text mode-global" style="display:none">
+                <span class="support-icon">💬</span>
+                <span>Support: <a href="https://t.me/kissapiai" target="_blank" style="color:inherit;text-decoration:underline">Telegram @kissapiai</a></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <main class="main-container">
+        <!-- Quick Guide -->
+        <section class="quick-guide" data-i18n-section="quickGuide">
+            <h2 class="quick-guide-title" data-i18n="quickGuide.title">不知道选哪个？30 秒帮你决定</h2>
+            <div class="quick-guide-grid">
+                <div class="quick-guide-card" onclick="switchToProduct('claude-code')" data-i18n-card="quickGuide.claudeCode">
+                    <span class="card-icon">🚀</span>
+                    <div class="card-title" data-i18n="quickGuide.claudeCode.title">我是程序员，想用 AI 写代码</div>
+                    <div class="card-recommend" data-i18n="quickGuide.claudeCode.recommend">→ 推荐 Claude Code</div>
+                </div>
+                <div class="quick-guide-card" onclick="switchToProduct('openclawd')" data-i18n-card="quickGuide.openclawd">
+                    <span class="card-icon">🖥️</span>
+                    <div class="card-title" data-i18n="quickGuide.openclawd.title">我想要一个全能 AI 助手</div>
+                    <div class="card-recommend" data-i18n="quickGuide.openclawd.recommend">→ 推荐 OpenClawd</div>
+                </div>
+                <div class="quick-guide-card" onclick="switchToProduct('cc-switch')" data-i18n-card="quickGuide.ccSwitch">
+                    <span class="card-icon">⚙️</span>
+                    <div class="card-title" data-i18n="quickGuide.ccSwitch.title">我想图形化管理多个 API</div>
+                    <div class="card-recommend" data-i18n="quickGuide.ccSwitch.recommend">→ 推荐 CC-Switch</div>
+                </div>
+                <div class="quick-guide-card" onclick="switchToProduct('vscode-cursor')" data-i18n-card="quickGuide.vscodeCursor">
+                    <span class="card-icon">💻</span>
+                    <div class="card-title" data-i18n="quickGuide.vscodeCursor.title">我用 VS Code / Cursor</div>
+                    <div class="card-recommend" data-i18n="quickGuide.vscodeCursor.recommend">→ 推荐 VS Code / Cursor</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Tabs -->
+        <nav class="product-tabs">
+            <button class="product-tab active" data-product="claude-code">
+                <span class="tab-icon">⚡</span>
+                <span data-i18n="tabs.claudeCode">Claude Code</span>
+            </button>
+            <button class="product-tab" data-product="openclawd">
+                <span class="tab-icon">🤖</span>
+                <span data-i18n="tabs.openclawd">OpenClawd</span>
+            </button>
+            <button class="product-tab" data-product="opencode">
+                <span class="tab-icon">🔓</span>
+                <span data-i18n="tabs.opencode">Opencode</span>
+            </button>
+            <button class="product-tab" data-product="cc-switch">
+                <span class="tab-icon">⚙️</span>
+                <span data-i18n="tabs.ccSwitch">CC-Switch</span>
+            </button>
+            <button class="product-tab" data-product="vscode-cursor">
+                <span class="tab-icon">💻</span>
+                <span data-i18n="tabs.vscodeCursor">VS Code / Cursor</span>
+            </button>
+        </nav>
+
+        <!-- Platform Tabs -->
+        <nav class="platform-tabs">
+            <button class="platform-tab active" data-platform="windows">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/>
+                </svg>
+                <span data-i18n="tabs.windows">Windows</span>
+            </button>
+            <button class="platform-tab" data-platform="macos">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                </svg>
+                <span data-i18n="tabs.macos">macOS</span>
+            </button>
+            <button class="platform-tab" data-platform="linux">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12.504 0c-.155 0-.315.008-.48.021-4.226.333-3.105 4.807-3.17 6.298-.076 1.092-.3 1.953-1.05 3.02-.885 1.051-2.127 2.75-2.716 4.521-.278.832-.41 1.684-.287 2.489a.424.424 0 00-.11.135c-.26.268-.45.6-.663.839-.199.199-.485.267-.797.4-.313.136-.658.269-.864.68-.09.189-.136.394-.132.602 0 .199.027.4.055.536.058.399.116.728.04.97-.249.68-.28 1.145-.106 1.484.174.334.535.47.94.601.81.2 1.91.135 2.774.6.926.466 1.866.67 2.616.47.526-.116.97-.464 1.208-.946.587-.003 1.23-.269 2.26-.334.699-.058 1.574.267 2.577.2.025.134.063.198.114.333l.003.003c.391.778 1.113 1.132 1.884 1.071.771-.06 1.592-.536 2.257-1.306.631-.765 1.683-1.084 2.378-1.503.348-.199.629-.469.649-.853.023-.4-.2-.811-.714-1.376v-.097l-.003-.003c-.17-.2-.25-.535-.338-.926-.085-.401-.182-.786-.492-1.046h-.003c-.059-.054-.123-.067-.188-.135a.357.357 0 00-.19-.064c.431-1.278.264-2.55-.173-3.694-.533-1.41-1.465-2.638-2.175-3.483-.796-1.005-1.576-1.957-1.56-3.368.026-2.152.236-6.133-3.544-6.139zm.529 3.405h.013c.213 0 .396.062.584.198.19.135.33.332.438.533.105.259.158.459.166.724 0-.02.006-.04.006-.06v.105a.086.086 0 01-.004-.021l-.004-.024a1.807 1.807 0 01-.15.706.953.953 0 01-.213.335.71.71 0 00-.088-.042c-.104-.045-.198-.064-.284-.133a1.312 1.312 0 00-.22-.066c.05-.06.146-.133.183-.198.053-.128.082-.264.088-.402v-.02a1.21 1.21 0 00-.061-.4c-.045-.134-.101-.2-.183-.333-.084-.066-.167-.132-.267-.132h-.016c-.093 0-.176.03-.262.132a.8.8 0 00-.205.334 1.18 1.18 0 00-.09.4v.019c.002.089.008.179.02.267-.193-.067-.438-.135-.607-.202a1.635 1.635 0 01-.018-.2v-.02a1.772 1.772 0 01.15-.768c.082-.22.232-.406.43-.533a.985.985 0 01.594-.2zm-2.962.059h.036c.142 0 .27.048.399.135.146.129.264.288.344.465.09.199.14.4.153.667v.004c.007.134.006.2-.002.266v.08c-.03.007-.056.018-.083.024-.152.055-.274.135-.393.2.012-.09.013-.18.003-.267v-.015c-.012-.133-.04-.2-.082-.333a.613.613 0 00-.166-.267.248.248 0 00-.183-.064h-.021c-.071.006-.13.04-.186.132a.552.552 0 00-.12.27.944.944 0 00-.023.33v.015c.012.135.037.2.08.334.046.134.098.2.166.268.01.009.02.018.034.024-.07.057-.117.07-.176.136a.304.304 0 01-.131.068 2.62 2.62 0 01-.275-.402 1.772 1.772 0 01-.155-.667 1.759 1.759 0 01.08-.668 1.43 1.43 0 01.283-.535c.128-.133.26-.2.418-.2zm1.37 1.706c.332 0 .733.065 1.216.399.293.2.523.269 1.052.468h.003c.255.136.405.266.478.399v-.131a.571.571 0 01.016.47c-.123.31-.516.643-1.063.842v.002c-.268.135-.501.333-.775.465-.276.135-.588.292-1.012.267a1.139 1.139 0 01-.448-.067 3.566 3.566 0 01-.322-.198c-.195-.135-.363-.332-.612-.465v-.005h-.005c-.4-.246-.616-.512-.686-.71-.07-.268-.005-.47.193-.6.224-.135.38-.271.483-.336.104-.074.143-.102.176-.131h.002v-.003c.169-.202.436-.47.839-.601.139-.036.294-.065.466-.065zm2.8 2.142c.358 1.417 1.196 3.475 1.735 4.473.286.534.855 1.659 1.102 3.024.156-.005.33.018.513.064.646-1.671-.546-3.467-1.089-3.966-.22-.2-.232-.335-.123-.335.59.534 1.365 1.572 1.646 2.757.13.535.16 1.104.021 1.67.067.028.135.06.205.067 1.032.534 1.413.938 1.23 1.537v-.002c-.06.135-.174.333-.27.465-.022.03-.048.062-.075.093-.715-.442-1.359-.534-1.894-.47-.537.068-.978.267-1.294.4-.25.135-.644.2-.942.134-.3-.066-.555-.2-.782-.4-.227-.2-.389-.401-.613-.6-.227-.2-.455-.402-.752-.868-.297-.467-.514-.868-.747-1.469-.239-.6-.386-1.203-.479-1.8-.093-.601-.143-1.068-.163-1.536-.02-.468-.016-.803-.01-.936.006-.134.015-.198.023-.198.01 0 .016.034.023.202.006.134.015.468.003.936-.012.47-.033.936-.055 1.47-.021.534.093 1.07.282 1.603.188.534.48.937.79 1.337.319.4.602.735 1.041 1.07.439.333.838.467 1.158.533.32.067.587.001.85-.133l-.001-.002c.279-.135.627-.402 1.098-.535.47-.133 1.053-.2 1.81.201.06-.067.12-.135.17-.202.1-.135.205-.333.248-.534.084-.402-.147-.935-1.047-1.469l-.002-.003c-.117-.066-.155-.2-.18-.332-.026-.135-.034-.267-.034-.4 0-.332.034-.667-.068-1.002-.167-.6-.456-1.135-.875-1.736-.42-.6-.96-1.203-1.522-1.937.025-.06.05-.12.075-.18a.63.63 0 01.11-.172c.056-.064.131-.108.253-.135.075-.02.15-.02.223-.02z"/>
+                </svg>
+                <span data-i18n="tabs.linux">Linux</span>
+            </button>
+        </nav>
+
+        <!-- Content Area -->
+        <div class="content-area">
+            <!-- Claude Code Content -->
+            <article class="product-content active" id="content-claude-code">
+                <!-- Windows -->
+                <div class="platform-content active" data-platform="windows">
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">1</span>
+                            安装 Node.js 环境
+                        </h2>
+                        <div class="step-content">
+                            <p>Claude Code 需要 Node.js 环境才能运行。请按照以下步骤安装 Node.js：</p>
+
+                            <h4>下载 Node.js</h4>
+                            <p>打开浏览器访问 <a href="https://nodejs.org/" target="_blank" rel="noopener">https://nodejs.org/</a>，点击 <strong>"LTS"</strong> 版本进行下载。</p>
+                            <div class="step-image">
+                                <img loading="lazy" src="images/newapi/windows-img-01.25e46fc4.webp" alt="Node.js 官网">
+                            </div>
+                            <div class="step-image">
+                                <img loading="lazy" src="images/newapi/windows-img-02.433ceb19.webp" alt="Node.js 下载">
+                            </div>
+
+                            <h4>安装 Node.js</h4>
+                            <p>下载完成后双击 <code>.msi</code> 文件，按照安装向导完成安装。</p>
+                            <div class="step-image">
+                                <img loading="lazy" src="images/newapi/windows-img-03.608aae8c.webp" alt="Node.js 安装">
+                            </div>
+                            <div class="step-image">
+                                <img loading="lazy" src="images/newapi/windows-img-04.bf2826da.webp" alt="Node.js 安装">
+                            </div>
+
+                            <h4>验证安装</h4>
+                            <p>打开 PowerShell，运行以下命令验证安装是否成功：</p>
+                            <pre class="code-block"><code class="language-powershell">node --version
+npm --version</code></pre>
+                            <div class="step-image">
+                                <img loading="lazy" src="images/newapi/windows-img-05.f7901cd8.webp" alt="验证 Node.js 安装">
+                            </div>
+
+                            <div class="notice notice-success" data-i18n-notice="successNodeInstall">
+                                <strong>✅ 验证成功：</strong>如果显示版本号（如 v22.x.x），说明 Node.js 安装成功！
+                            </div>
+
+                            <div class="notice notice-warning">
+                                <strong>注意事项：</strong>
+                                <ul>
+                                    <li>建议使用 PowerShell 而不是 CMD</li>
+                                    <li>如果遇到权限问题，尝试以管理员身份运行</li>
+                                    <li>某些杀毒软件可能会误报，请添加信任</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">2</span>
+                            安装 Git Bash
+                        </h2>
+                        <div class="step-content">
+                            <p>Windows 环境下需要使用 Git Bash 安装 Claude Code。安装完成后，环境变量设置和使用仍在 PowerShell 或 CMD 中。</p>
+
+                            <h4>下载 Git</h4>
+                            <p>访问 <a href="https://git-scm.com/downloads/win" target="_blank" rel="noopener">https://git-scm.com/downloads/win</a> 下载 Git for Windows。</p>
+                            <div class="step-image">
+                                <img loading="lazy" src="images/newapi/windows-img-06.bab59349.webp" alt="Git 下载">
+                            </div>
+
+                            <h4>安装 Git</h4>
+                            <p>下载完成后运行安装程序，按照默认设置完成安装即可。</p>
+                            <div class="step-image">
+                                <img loading="lazy" src="images/newapi/windows-img-07.b779cb58.webp" alt="Git 安装">
+                            </div>
+                            <div class="step-image">
+                                <img loading="lazy" src="images/newapi/windows-img-08.0a1707e8.webp" alt="Git 安装完成">
+                            </div>
+
+                            <h4>验证安装</h4>
+                            <pre class="code-block"><code class="language-powershell">git --version</code></pre>
+                        </div>
+                    </section>
+
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">3</span>
+                            安装 Claude Code
+                        </h2>
+                        <div class="step-content">
+                            <p>打开 PowerShell，运行以下命令安装 Claude Code：</p>
+                            <pre class="code-block"><code class="language-powershell">npm install -g @anthropic-ai/claude-code</code></pre>
+                            <div class="step-image">
+                                <img loading="lazy" src="images/newapi/windows-img-09.7fa56d82.webp" alt="npm 安装 Claude Code">
+                            </div>
+
+                            <p>如果安装过程中提示需要将 <code>~/.local/bin</code> 加入 PATH，请运行：</p>
+                            <pre class="code-block"><code class="language-powershell">[Environment]::SetEnvironmentVariable('Path', ([Environment]::GetEnvironmentVariable('Path','User') + ";$HOME\.local\bin"), 'User')</code></pre>
+
+                            <h4>验证安装</h4>
+                            <pre class="code-block"><code class="language-powershell">claude --version</code></pre>
+
+                            <div class="notice notice-success" data-i18n-notice="successClaudeInstall">
+                                <strong>✅ 验证成功：</strong>如果显示版本号，说明 Claude Code 安装成功！
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">4</span>
+                            <span data-i18n="claudeCode.getApiKey">获取 API Key</span>
+                        </h2>
+                        <div class="step-content">
+                            <p data-i18n="claudeCode.getApiKeyDesc">在设置环境变量之前，你需要先获取一个 API Key。这是连接中转服务的"通行证"。</p>
+
+                            <h4 data-i18n="claudeCode.getApiKeyStep1">1. 打开浏览器访问 api.augmentproxy.top</h4>
+                            <p>访问 <a href="https://api.augmentproxy.top" target="_blank">https://api.augmentproxy.top</a></p>
+                            <div class="step-image placeholder"><div class="placeholder-box">📸 截图占位：api.augmentproxy.top 首页</div></div>
+
+                            <h4 data-i18n="claudeCode.getApiKeyStep2">2. 点击"注册"创建账号</h4>
+                            <p data-i18n="claudeCode.getApiKeyStep2Desc">如果还没有账号，点击页面上的"注册"按钮创建一个新账号。</p>
+                            <div class="step-image placeholder"><div class="placeholder-box">📸 截图占位：注册页面</div></div>
+
+                            <h4 data-i18n="claudeCode.getApiKeyStep3">3. 登录后，在左侧菜单找到"令牌"</h4>
+                            <p data-i18n="claudeCode.getApiKeyStep3Desc">登录成功后，在左侧导航菜单中找到并点击"令牌"选项。</p>
+                            <div class="step-image placeholder"><div class="placeholder-box">📸 截图占位：左侧菜单 - 令牌入口</div></div>
+
+                            <h4 data-i18n="claudeCode.getApiKeyStep4">4. 点击"添加新的令牌"，填写名称，点击提交</h4>
+                            <p data-i18n="claudeCode.getApiKeyStep4Desc">点击"添加新的令牌"按钮，输入一个便于识别的名称（如"Claude Code"），然后点击提交。</p>
+                            <div class="step-image placeholder"><div class="placeholder-box">📸 截图占位：添加新令牌对话框</div></div>
+
+                            <h4 data-i18n="claudeCode.getApiKeyStep5">5. 复制生成的 API Key（以 sk- 开头）</h4>
+                            <p data-i18n="claudeCode.getApiKeyStep5Desc">令牌创建成功后，页面会显示一个以 <code>sk-</code> 开头的密钥，点击复制按钮将其保存。</p>
+                            <div class="step-image placeholder"><div class="placeholder-box">📸 截图占位：复制 API Key</div></div>
+
+                            <div class="notice notice-danger" data-i18n-notice="apiKeyWarning">
+                                <strong>⚠️ 重要提醒：</strong>API Key 只显示一次，请立即复制保存！如果丢失，需要重新创建新的令牌。
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">5</span>
+                            设置环境变量
+                        </h2>
+                        <div class="step-content">
+                            <p>为了让 Claude Code 连接到中转服务，需要将 <code>ANTHROPIC_BASE_URL</code> 设置为：</p>
+                            <pre class="code-block"><code class="language-powershell">https://api.augmentproxy.top</code></pre>
+
+                            <h4>方式一：一键设置<span class="recommended-badge">推荐</span></h4>
+                            <div class="one-click-setup">
+                            <p>运行以下命令，按提示输入上述地址和你的 API Key 即可自动完成配置：</p>
+                            <pre class="code-block"><code class="language-powershell">iex (irm 'https://raw.githubusercontent.com/QuantumNous/new-api-docs/refs/heads/main/helper/claude-cli-setup.ps1')</code></pre>
+                            <div class="step-image">
+                                <img loading="lazy" src="images/newapi/windows_configure.aa37d30b.png" alt="Windows 环境变量配置">
+                            </div>
+                            </div>
+
+                            <div class="manual-setup">
+                            <details>
+                            <summary>方式二：手动设置（点击展开）</summary>
+                            <div class="details-content">
+                            <p><strong>临时设置（仅当前会话有效）</strong></p>
+                            <pre class="code-block"><code class="language-powershell">$env:ANTHROPIC_BASE_URL = "https://api.augmentproxy.top"
+$env:ANTHROPIC_AUTH_TOKEN = "your_api_key"</code></pre>
+
+                            <p><strong>永久设置（推荐）</strong></p>
+                            <pre class="code-block"><code class="language-powershell">[System.Environment]::SetEnvironmentVariable("ANTHROPIC_BASE_URL", "https://api.augmentproxy.top", [System.EnvironmentVariableTarget]::User)
+[System.Environment]::SetEnvironmentVariable("ANTHROPIC_AUTH_TOKEN", "your_api_key", [System.EnvironmentVariableTarget]::User)</code></pre>
+                            </div>
+                            </details>
+                            </div>
+
+                            <div class="notice notice-info">
+                                <strong>获取 API Key：</strong>请参考上方第 4 步获取你的 API Key。
+                            </div>
+
+                            <div class="notice notice-warning">
+                                <strong>提示：</strong>设置永久环境变量后，需要重新打开 PowerShell 窗口才能生效。
+                            </div>
+
+                            <div class="notice notice-success" data-i18n-notice="successEnvVar">
+                                <strong>✅ 验证方法：</strong>重新打开 PowerShell，运行 <code>echo $env:ANTHROPIC_BASE_URL</code>，如果输出 <code>https://api.augmentproxy.top</code>，说明环境变量设置成功！
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">6</span>
+                            开始使用 Claude Code
+                        </h2>
+                        <div class="step-content">
+                            <h4>启动 Claude Code</h4>
+                            <pre class="code-block"><code class="language-powershell">claude</code></pre>
+                            <div class="step-image">
+                                <img loading="lazy" src="images/newapi/windows-img-11.34c9310d.webp" alt="启动 Claude Code">
+                            </div>
+
+                            <div class="notice notice-success" data-i18n-notice="successClaudeStart">
+                                <strong>✅ 成功：</strong>如果看到 Claude Code 的交互界面，恭喜你已经配置成功！
+                            </div>
+
+                            <h4>在项目中使用</h4>
+                            <pre class="code-block"><code class="language-powershell">cd C:\path\to\your\project
+claude</code></pre>
+                            <div class="step-image">
+                                <img loading="lazy" src="images/newapi/windows-img-12.06873503.webp" alt="Claude Code 运行">
+                            </div>
+                            <div class="step-image">
+                                <img loading="lazy" src="images/newapi/windows-img-13.fb1e7f1c.webp" alt="Claude Code 运行">
+                            </div>
+                            <div class="step-image">
+                                <img loading="lazy" src="images/newapi/windows-img-14.ea170bae.webp" alt="Claude Code 运行">
+                            </div>
+                            <div class="step-image">
+                                <img loading="lazy" src="images/newapi/windows-img-15.83909bda.webp" alt="Claude Code 运行">
+                            </div>
+
+                            <h4>选择模型</h4>
+                            <p>在 Claude Code 中输入 <code>/model</code> 命令来选择不同的模型：</p>
+                            <div class="step-image">
+                                <img loading="lazy" src="images/newapi/windows-img-16.716f224f.webp" alt="选择模型">
+                            </div>
+                            <div class="step-image">
+                                <img loading="lazy" src="images/newapi/windows-img-17.377a711a.webp" alt="选择模型">
+                            </div>
+
+                            <div class="notice notice-warning">
+                                <strong>注意：</strong>设置环境变量修改后，使用所有模型均调用自定义接入点。
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- FAQ Section -->
+                    <section class="faq-section">
+                        <h2 class="section-title">常见问题</h2>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span data-i18n="faq.whatIsTerminal">什么是终端/PowerShell？怎么打开？</span>
+                                <svg class="faq-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div class="faq-answer">
+                                <p data-i18n="faq.whatIsTerminalAnswer">终端（Terminal）和 PowerShell 是电脑上的命令行工具，可以通过输入文字命令来操作电脑。你可以把它想象成"用打字代替点击"的操作方式。</p>
+                                <p><strong>Windows 打开方式：</strong>按 <code>Win + X</code>，选择"Windows PowerShell"或"终端"；或在开始菜单搜索"PowerShell"。</p>
+                                <p><strong>macOS 打开方式：</strong>按 <code>Cmd + 空格</code>，输入"终端"或"Terminal"，回车打开。</p>
+                                <div class="step-image placeholder"><div class="placeholder-box">📸 截图占位：Windows 打开 PowerShell 的方式</div></div>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span data-i18n="faq.whatIsApiKey">API Key 是什么？</span>
+                                <svg class="faq-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div class="faq-answer">
+                                <p data-i18n="faq.whatIsApiKeyAnswer">API Key 就像是你的"通行证"或"门禁卡"。当你使用 Claude Code 等工具时，需要用 API Key 来证明你的身份，这样服务器才知道是你在使用服务，并从你的账户扣费。每个人的 API Key 都是唯一的，以 <code>sk-</code> 开头。</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span data-i18n="faq.isProxySafe">中转服务安全吗？</span>
+                                <svg class="faq-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div class="faq-answer">
+                                <p data-i18n="faq.isProxySafeAnswer">中转服务只做请求转发，不存储你的对话数据和代码内容。你的请求通过中转服务器转发到 AI 模型提供商（如 Anthropic），响应结果直接返回给你。整个过程使用 HTTPS 加密传输，确保数据安全。</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span data-i18n="faq.howToRecharge">额度用完了怎么充值？</span>
+                                <svg class="faq-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div class="faq-answer">
+                                <p data-i18n="faq.howToRechargeAnswer">访问 <a href="https://api.augmentproxy.top" target="_blank">api.augmentproxy.top</a>，登录后在左侧菜单找到"钱包"或"充值"页面，按照提示完成充值即可。充值后额度实时到账，无需重启工具。</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>npm install 报错 permission denied</span>
+                                <svg class="faq-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div class="faq-answer">
+                                <p>以管理员身份运行 PowerShell，或者修改 npm 全局安装路径：</p>
+                                <pre class="code-block"><code class="language-powershell"># 设置 npm 全局安装路径到用户目录
+npm config set prefix "$env:USERPROFILE\\.npm-global"
+
+# 添加到 PATH
+[Environment]::SetEnvironmentVariable("PATH", "$env:PATH;$env:USERPROFILE\.npm-global", "User")</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>PowerShell 脚本执行策略限制</span>
+                                <svg class="faq-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div class="faq-answer">
+                                <p>如果遇到脚本执行策略限制，以管理员身份运行：</p>
+                                <pre class="code-block"><code class="language-powershell">Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>环境变量设置后不生效</span>
+                                <svg class="faq-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div class="faq-answer">
+                                <ol>
+                                    <li>确保使用 <code>[Environment]::SetEnvironmentVariable</code> 设置永久变量</li>
+                                    <li>关闭并重新打开终端窗口</li>
+                                    <li>验证设置：<code>echo $env:ANTHROPIC_AUTH_TOKEN</code></li>
+                                    <li>如仍不生效，尝试注销并重新登录 Windows</li>
+                                </ol>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>首次启动跳过 settings.json 强制连接 Anthropic</span>
+                                <svg class="faq-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div class="faq-answer">
+                                <p>在 <code>.claude</code> 同级目录下的 <code>.claude.json</code> 文件里加一行：</p>
+                                <pre class="code-block"><code class="language-json">"hasCompletedOnboarding": true</code></pre>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- macOS -->
+                <div class="platform-content" data-platform="macos">
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">1</span>
+                            安装 Claude Code CLI
+                        </h2>
+                        <div class="step-content">
+                            <h4>打开终端</h4>
+                            <p>在 macOS 中打开"终端"应用程序。</p>
+                            <div class="step-image">
+                                <img loading="lazy" src="images/newapi/macos-img-01.a3c4646c.webp" alt="打开终端">
+                            </div>
+
+                            <h4>安装 Claude Code</h4>
+                            <p>在终端中运行以下命令：</p>
+                            <pre class="code-block"><code class="language-bash">curl -fsSL https://claude.ai/install.sh | bash</code></pre>
+                            <div class="step-image">
+                                <img loading="lazy" src="images/newapi/macos-img-02.1975d83d.webp" alt="安装 Claude Code">
+                            </div>
+
+                            <p>如果需要将 Claude Code 添加到 PATH，可以运行：</p>
+                            <pre class="code-block"><code class="language-bash">echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc && source ~/.bashrc</code></pre>
+
+                            <h4>验证安装</h4>
+                            <pre class="code-block"><code class="language-bash">claude --version</code></pre>
+
+                            <div class="notice notice-success" data-i18n-notice="successClaudeInstallMac">
+                                <strong>✅ 验证成功：</strong>如果显示版本号，说明 Claude Code 安装成功！
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">2</span>
+                            <span data-i18n="claudeCode.getApiKey">获取 API Key</span>
+                        </h2>
+                        <div class="step-content">
+                            <p data-i18n="claudeCode.getApiKeyDesc">在设置环境变量之前，你需要先获取一个 API Key。这是连接中转服务的"通行证"。</p>
+
+                            <h4 data-i18n="claudeCode.getApiKeyStep1">1. 打开浏览器访问 api.augmentproxy.top</h4>
+                            <p>访问 <a href="https://api.augmentproxy.top" target="_blank">https://api.augmentproxy.top</a></p>
+                            <div class="step-image placeholder"><div class="placeholder-box">📸 截图占位：api.augmentproxy.top 首页</div></div>
+
+                            <h4 data-i18n="claudeCode.getApiKeyStep2">2. 点击"注册"创建账号</h4>
+                            <p data-i18n="claudeCode.getApiKeyStep2Desc">如果还没有账号，点击页面上的"注册"按钮创建一个新账号。</p>
+                            <div class="step-image placeholder"><div class="placeholder-box">📸 截图占位：注册页面</div></div>
+
+                            <h4 data-i18n="claudeCode.getApiKeyStep3">3. 登录后，在左侧菜单找到"令牌"</h4>
+                            <p data-i18n="claudeCode.getApiKeyStep3Desc">登录成功后，在左侧导航菜单中找到并点击"令牌"选项。</p>
+                            <div class="step-image placeholder"><div class="placeholder-box">📸 截图占位：左侧菜单 - 令牌入口</div></div>
+
+                            <h4 data-i18n="claudeCode.getApiKeyStep4">4. 点击"添加新的令牌"，填写名称，点击提交</h4>
+                            <p data-i18n="claudeCode.getApiKeyStep4Desc">点击"添加新的令牌"按钮，输入一个便于识别的名称（如"Claude Code"），然后点击提交。</p>
+                            <div class="step-image placeholder"><div class="placeholder-box">📸 截图占位：添加新令牌对话框</div></div>
+
+                            <h4 data-i18n="claudeCode.getApiKeyStep5">5. 复制生成的 API Key（以 sk- 开头）</h4>
+                            <p data-i18n="claudeCode.getApiKeyStep5Desc">令牌创建成功后，页面会显示一个以 <code>sk-</code> 开头的密钥，点击复制按钮将其保存。</p>
+                            <div class="step-image placeholder"><div class="placeholder-box">📸 截图占位：复制 API Key</div></div>
+
+                            <div class="notice notice-danger" data-i18n-notice="apiKeyWarning">
+                                <strong>⚠️ 重要提醒：</strong>API Key 只显示一次，请立即复制保存！如果丢失，需要重新创建新的令牌。
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">3</span>
+                            设置环境变量
+                        </h2>
+                        <div class="step-content">
+                            <p>为了让 Claude Code 连接到中转服务，需要将 <code>ANTHROPIC_BASE_URL</code> 设置为：</p>
+                            <pre class="code-block"><code class="language-bash">https://api.augmentproxy.top</code></pre>
+
+                            <h4>方式一：一键设置<span class="recommended-badge">推荐</span></h4>
+                            <div class="one-click-setup">
+                            <p>运行以下命令，按提示输入上述地址和你的 API Key 即可自动完成配置：</p>
+                            <pre class="code-block"><code class="language-bash">curl -fsSL https://raw.githubusercontent.com/QuantumNous/new-api-docs/refs/heads/main/helper/claude-cli-setup.sh | bash</code></pre>
+                            <div class="step-image">
+                                <img loading="lazy" src="images/newapi/macos_configure.71f82e09.png" alt="macOS 环境变量配置">
+                            </div>
+                            </div>
+
+                            <div class="manual-setup">
+                            <details>
+                            <summary>方式二：手动设置（点击展开）</summary>
+                            <div class="details-content">
+                            <p><strong>临时设置（仅当前会话有效）</strong></p>
+                            <pre class="code-block"><code class="language-bash">export ANTHROPIC_BASE_URL="https://api.augmentproxy.top"
+export ANTHROPIC_AUTH_TOKEN="your_api_key"</code></pre>
+
+                            <p><strong>永久设置（推荐）</strong></p>
+                            <pre class="code-block"><code class="language-bash"># 添加到 ~/.zshrc（zsh 用户）或 ~/.bashrc（bash 用户）
+echo 'export ANTHROPIC_BASE_URL="https://api.augmentproxy.top"' >> ~/.zshrc
+echo 'export ANTHROPIC_AUTH_TOKEN="your_api_key"' >> ~/.zshrc
+
+# 使配置生效
+source ~/.zshrc</code></pre>
+                            </div>
+                            </details>
+                            </div>
+
+                            <div class="notice notice-info">
+                                <strong>获取 API Key：</strong>请参考上方第 2 步获取你的 API Key。
+                            </div>
+
+                            <div class="notice notice-success" data-i18n-notice="successEnvVarMac">
+                                <strong>✅ 验证方法：</strong>运行 <code>echo $ANTHROPIC_BASE_URL</code>，如果输出 <code>https://api.augmentproxy.top</code>，说明环境变量设置成功！
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">4</span>
+                            开始使用 Claude Code
+                        </h2>
+                        <div class="step-content">
+                            <h4>启动 Claude Code</h4>
+                            <pre class="code-block"><code class="language-bash">claude</code></pre>
+                            <div class="step-image">
+                                <img loading="lazy" src="images/newapi/macos-img-04.3fc56a57.webp" alt="启动 Claude Code">
+                            </div>
+
+                            <div class="notice notice-success" data-i18n-notice="successClaudeStartMac">
+                                <strong>✅ 成功：</strong>如果看到 Claude Code 的交互界面，恭喜你已经配置成功！
+                            </div>
+
+                            <h4>在项目中使用</h4>
+                            <pre class="code-block"><code class="language-bash">cd /path/to/your/project
+claude</code></pre>
+                            <div class="step-image">
+                                <img loading="lazy" src="images/newapi/macos-img-05.d7a75598.webp" alt="Claude Code 运行">
+                            </div>
+                            <div class="step-image">
+                                <img loading="lazy" src="images/newapi/macos-img-06.2a2a1218.webp" alt="Claude Code 运行">
+                            </div>
+                            <div class="step-image">
+                                <img loading="lazy" src="images/newapi/macos-img-07.70034b8d.webp" alt="Claude Code 运行">
+                            </div>
+                            <div class="step-image">
+                                <img loading="lazy" src="images/newapi/macos-img-08.c8be8e85.webp" alt="Claude Code 运行">
+                            </div>
+
+                            <h4>选择模型</h4>
+                            <p>在 Claude Code 中输入 <code>/model</code> 命令来选择不同的模型：</p>
+                            <div class="step-image">
+                                <img loading="lazy" src="images/newapi/macos-img-09.4803dbb1.webp" alt="选择模型">
+                            </div>
+                            <div class="step-image">
+                                <img loading="lazy" src="images/newapi/macos-img-10.4179dbe2.webp" alt="选择模型">
+                            </div>
+                            <div class="step-image">
+                                <img loading="lazy" src="images/newapi/macos-img-11.b7da8587.webp" alt="选择模型">
+                            </div>
+
+                            <div class="notice notice-warning">
+                                <strong>注意：</strong>设置环境变量修改 ANTHROPIC_BASE_URL 后，使用所有模型均调用自定义接入点。
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="faq-section">
+                        <h2 class="section-title">常见问题</h2>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span data-i18n="faq.whatIsTerminal">什么是终端/PowerShell？怎么打开？</span>
+                                <svg class="faq-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div class="faq-answer">
+                                <p>终端（Terminal）是 macOS 上的命令行工具。按 <code>Cmd + 空格</code>，输入"终端"或"Terminal"，回车即可打开。</p>
+                                <div class="step-image placeholder"><div class="placeholder-box">📸 截图占位：macOS 打开终端的方式</div></div>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span data-i18n="faq.whatIsApiKey">API Key 是什么？</span>
+                                <svg class="faq-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div class="faq-answer">
+                                <p>API Key 就像是你的"通行证"。使用 Claude Code 时需要用它来验证身份，以 <code>sk-</code> 开头，每个人的都是唯一的。</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span data-i18n="faq.isProxySafe">中转服务安全吗？</span>
+                                <svg class="faq-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div class="faq-answer">
+                                <p>中转服务只做请求转发，不存储你的对话数据和代码内容。整个过程使用 HTTPS 加密传输。</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span data-i18n="faq.howToRecharge">额度用完了怎么充值？</span>
+                                <svg class="faq-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div class="faq-answer">
+                                <p>访问 <a href="https://api.augmentproxy.top" target="_blank">api.augmentproxy.top</a>，登录后在左侧菜单找到"钱包"或"充值"页面完成充值即可。</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>macOS 安全设置阻止运行</span>
+                                <svg class="faq-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div class="faq-answer">
+                                <p>如果 macOS 安全设置阻止运行 Claude Code，可以尝试以下方法：</p>
+                                <ol>
+                                    <li>打开"系统偏好设置" → "安全性与隐私"</li>
+                                    <li>点击"仍要打开"或"允许"</li>
+                                    <li>或者在终端中运行以下命令：</li>
+                                </ol>
+                                <pre class="code-block"><code class="language-bash">sudo spctl --master-disable</code></pre>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Linux -->
+                <div class="platform-content" data-platform="linux">
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">1</span>
+                            安装 Claude Code
+                        </h2>
+                        <div class="step-content">
+                            <p>打开终端，运行以下命令安装 Claude Code：</p>
+                            <pre class="code-block"><code class="language-bash">curl -fsSL https://claude.ai/install.sh | bash</code></pre>
+                            <div class="step-image">
+                                <img loading="lazy" src="images/newapi/linux-img-01.9eb19c24.webp" alt="Linux 终端">
+                            </div>
+
+                            <p>如果遇到权限问题，可以使用 sudo：</p>
+                            <pre class="code-block"><code class="language-bash">sudo curl -fsSL https://claude.ai/install.sh | bash</code></pre>
+                            <div class="step-image">
+                                <img loading="lazy" src="images/newapi/linux-img-03.e1a2c768.webp" alt="安装 Claude Code">
+                            </div>
+
+                            <h4>验证安装</h4>
+                            <pre class="code-block"><code class="language-bash">claude --version</code></pre>
+
+                            <div class="notice notice-success" data-i18n-notice="successClaudeInstallLinux">
+                                <strong>✅ 验证成功：</strong>如果显示版本号，说明 Claude Code 安装成功！
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">2</span>
+                            <span data-i18n="claudeCode.getApiKey">获取 API Key</span>
+                        </h2>
+                        <div class="step-content">
+                            <p data-i18n="claudeCode.getApiKeyDesc">在设置环境变量之前，你需要先获取一个 API Key。这是连接中转服务的"通行证"。</p>
+
+                            <h4 data-i18n="claudeCode.getApiKeyStep1">1. 打开浏览器访问 api.augmentproxy.top</h4>
+                            <p>访问 <a href="https://api.augmentproxy.top" target="_blank">https://api.augmentproxy.top</a></p>
+                            <div class="step-image placeholder"><div class="placeholder-box">📸 截图占位：api.augmentproxy.top 首页</div></div>
+
+                            <h4 data-i18n="claudeCode.getApiKeyStep2">2. 点击"注册"创建账号</h4>
+                            <p data-i18n="claudeCode.getApiKeyStep2Desc">如果还没有账号，点击页面上的"注册"按钮创建一个新账号。</p>
+                            <div class="step-image placeholder"><div class="placeholder-box">📸 截图占位：注册页面</div></div>
+
+                            <h4 data-i18n="claudeCode.getApiKeyStep3">3. 登录后，在左侧菜单找到"令牌"</h4>
+                            <p data-i18n="claudeCode.getApiKeyStep3Desc">登录成功后，在左侧导航菜单中找到并点击"令牌"选项。</p>
+                            <div class="step-image placeholder"><div class="placeholder-box">📸 截图占位：左侧菜单 - 令牌入口</div></div>
+
+                            <h4 data-i18n="claudeCode.getApiKeyStep4">4. 点击"添加新的令牌"，填写名称，点击提交</h4>
+                            <p data-i18n="claudeCode.getApiKeyStep4Desc">点击"添加新的令牌"按钮，输入一个便于识别的名称（如"Claude Code"），然后点击提交。</p>
+                            <div class="step-image placeholder"><div class="placeholder-box">📸 截图占位：添加新令牌对话框</div></div>
+
+                            <h4 data-i18n="claudeCode.getApiKeyStep5">5. 复制生成的 API Key（以 sk- 开头）</h4>
+                            <p data-i18n="claudeCode.getApiKeyStep5Desc">令牌创建成功后，页面会显示一个以 <code>sk-</code> 开头的密钥，点击复制按钮将其保存。</p>
+                            <div class="step-image placeholder"><div class="placeholder-box">📸 截图占位：复制 API Key</div></div>
+
+                            <div class="notice notice-danger" data-i18n-notice="apiKeyWarning">
+                                <strong>⚠️ 重要提醒：</strong>API Key 只显示一次，请立即复制保存！如果丢失，需要重新创建新的令牌。
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">3</span>
+                            设置环境变量
+                        </h2>
+                        <div class="step-content">
+                            <p>为了让 Claude Code 连接到中转服务，需要将 <code>ANTHROPIC_BASE_URL</code> 设置为：</p>
+                            <pre class="code-block"><code class="language-bash">https://api.augmentproxy.top</code></pre>
+
+                            <h4>方式一：一键设置<span class="recommended-badge">推荐</span></h4>
+                            <div class="one-click-setup">
+                            <p>运行以下命令，按提示输入上述地址和你的 API Key 即可自动完成配置：</p>
+                            <pre class="code-block"><code class="language-bash">curl -fsSL https://raw.githubusercontent.com/QuantumNous/new-api-docs/refs/heads/main/helper/claude-cli-setup.sh | bash</code></pre>
+                            <div class="step-image">
+                                <img loading="lazy" src="images/newapi/macos_configure.71f82e09.png" alt="环境变量配置">
+                            </div>
+                            </div>
+
+                            <div class="manual-setup">
+                            <details>
+                            <summary>方式二：手动设置（点击展开）</summary>
+                            <div class="details-content">
+                            <p><strong>临时设置（仅当前会话有效）</strong></p>
+                            <pre class="code-block"><code class="language-bash">export ANTHROPIC_BASE_URL="https://api.augmentproxy.top"
+export ANTHROPIC_AUTH_TOKEN="your_api_key"</code></pre>
+
+                            <p><strong>永久设置（推荐）</strong></p>
+                            <pre class="code-block"><code class="language-bash"># 添加到 ~/.bashrc 或 ~/.profile
+echo 'export ANTHROPIC_BASE_URL="https://api.augmentproxy.top"' >> ~/.bashrc
+echo 'export ANTHROPIC_AUTH_TOKEN="your_api_key"' >> ~/.bashrc
+
+# 使配置生效
+source ~/.bashrc</code></pre>
+                            </div>
+                            </details>
+                            </div>
+
+                            <div class="notice notice-info">
+                                <strong>获取 API Key：</strong>请参考上方第 2 步获取你的 API Key。
+                            </div>
+
+                            <div class="notice notice-success" data-i18n-notice="successEnvVarLinux">
+                                <strong>✅ 验证方法：</strong>运行 <code>echo $ANTHROPIC_BASE_URL</code>，如果输出 <code>https://api.augmentproxy.top</code>，说明环境变量设置成功！
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">4</span>
+                            开始使用 Claude Code
+                        </h2>
+                        <div class="step-content">
+                            <h4>启动 Claude Code</h4>
+                            <pre class="code-block"><code class="language-bash">claude</code></pre>
+
+                            <div class="notice notice-success" data-i18n-notice="successClaudeStartLinux">
+                                <strong>✅ 成功：</strong>如果看到 Claude Code 的交互界面，恭喜你已经配置成功！
+                            </div>
+
+                            <h4>在项目中使用</h4>
+                            <pre class="code-block"><code class="language-bash">cd /path/to/your/project
+claude</code></pre>
+                            <div class="step-image">
+                                <img loading="lazy" src="images/newapi/linux-img-03.e1a2c768.webp" alt="Claude Code 运行">
+                            </div>
+                            <div class="step-image">
+                                <img loading="lazy" src="images/newapi/linux-img-04.11353af2.webp" alt="Claude Code 运行">
+                            </div>
+                            <div class="step-image">
+                                <img loading="lazy" src="images/newapi/linux-img-05.1a00a817.webp" alt="Claude Code 运行">
+                            </div>
+
+                            <h4>选择模型</h4>
+                            <p>在 Claude Code 中输入 <code>/model</code> 命令来选择不同的模型：</p>
+                            <div class="step-image">
+                                <img loading="lazy" src="images/newapi/linux-img-06.c92e81b5.webp" alt="选择模型">
+                            </div>
+                            <div class="step-image">
+                                <img loading="lazy" src="images/newapi/linux-img-07.be44b727.webp" alt="选择模型">
+                            </div>
+                            <div class="step-image">
+                                <img loading="lazy" src="images/newapi/linux-img-08.ff988ff4.webp" alt="选择模型">
+                            </div>
+                            <div class="step-image">
+                                <img loading="lazy" src="images/newapi/linux-img-09.d401f354.webp" alt="选择模型">
+                            </div>
+
+                            <div class="notice notice-warning">
+                                <strong>注意：</strong>设置环境变量修改 ANTHROPIC_BASE_URL 后，使用所有模型均调用自定义接入点。
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="faq-section">
+                        <h2 class="section-title">常见问题</h2>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span data-i18n="faq.whatIsTerminal">什么是终端/PowerShell？怎么打开？</span>
+                                <svg class="faq-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div class="faq-answer">
+                                <p>终端（Terminal）是 Linux 上的命令行工具。大多数 Linux 桌面环境可以通过 <code>Ctrl + Alt + T</code> 快捷键打开终端。</p>
+                                <div class="step-image placeholder"><div class="placeholder-box">📸 截图占位：Linux 打开终端的方式</div></div>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span data-i18n="faq.whatIsApiKey">API Key 是什么？</span>
+                                <svg class="faq-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div class="faq-answer">
+                                <p>API Key 就像是你的"通行证"。使用 Claude Code 时需要用它来验证身份，以 <code>sk-</code> 开头，每个人的都是唯一的。</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span data-i18n="faq.isProxySafe">中转服务安全吗？</span>
+                                <svg class="faq-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div class="faq-answer">
+                                <p>中转服务只做请求转发，不存储你的对话数据和代码内容。整个过程使用 HTTPS 加密传输。</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span data-i18n="faq.howToRecharge">额度用完了怎么充值？</span>
+                                <svg class="faq-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div class="faq-answer">
+                                <p>访问 <a href="https://api.augmentproxy.top" target="_blank">api.augmentproxy.top</a>，登录后在左侧菜单找到"钱包"或"充值"页面完成充值即可。</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>缺少依赖库</span>
+                                <svg class="faq-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div class="faq-answer">
+                                <p>根据你的 Linux 发行版安装必要的开发工具：</p>
+                                <pre class="code-block"><code class="language-bash"># Ubuntu/Debian
+sudo apt install build-essential
+
+# CentOS/RHEL
+sudo dnf groupinstall "Development Tools"</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>环境变量不生效</span>
+                                <svg class="faq-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div class="faq-answer">
+                                <p>请检查以下几点：</p>
+                                <ol>
+                                    <li>确认修改了正确的配置文件（<code>.bashrc</code> 或 <code>.zshrc</code>）</li>
+                                    <li>重新启动终端或运行 <code>source ~/.bashrc</code></li>
+                                    <li>验证设置是否生效：</li>
+                                </ol>
+                                <pre class="code-block"><code class="language-bash">echo $ANTHROPIC_BASE_URL</code></pre>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </article>
+
+            <!-- OpenClawd Content -->
+            <article class="product-content" id="content-openclawd">
+                <!-- Windows -->
+                <div class="platform-content active" data-platform="windows">
+                    <section class="intro-card">
+                        <h2 data-i18n="openclawd.about">关于 OpenClawd</h2>
+                        <p data-i18n="openclawd.aboutDesc">OpenClaw 是一个强大的 AI 助理框架，支持多渠道接入（WhatsApp、Telegram、Discord 等），可以帮你处理日常任务、编程、文件管理等。</p>
+                        <div class="feature-list">
+                            <div class="feature-item">
+                                <span class="feature-icon">💬</span>
+                                <span data-i18n="openclawd.features.multiChannel">多渠道消息</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">🔧</span>
+                                <span data-i18n="openclawd.features.toolCall">工具调用</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">📁</span>
+                                <span data-i18n="openclawd.features.fileOps">文件操作</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">🌐</span>
+                                <span data-i18n="openclawd.features.webBrowse">网页浏览</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">⏰</span>
+                                <span data-i18n="openclawd.features.schedule">定时任务</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">🔌</span>
+                                <span data-i18n="openclawd.features.plugins">插件扩展</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">1</span>
+                            <span data-i18n="openclawd.step1Title">安装 WSL2</span>
+                        </h2>
+                        <div class="step-content">
+                            <p data-i18n="openclawd.step1Desc">OpenClaw 在 Windows 上需要通过 WSL2 (Windows Subsystem for Linux) 运行。</p>
+                            <h4 data-i18n="openclawd.step1SubTitle">以管理员身份打开 PowerShell，执行：</h4>
+                            <pre class="code-block"><code class="language-powershell">wsl --install</code></pre>
+                            <p data-i18n="openclawd.step1PostDesc">安装完成后重启电脑，然后打开 Ubuntu 终端设置用户名和密码。</p>
+                            <div class="notice notice-info">
+                                <strong data-i18n="openclawd.step1Tip">提示：</strong><span data-i18n="openclawd.step1TipText">如果已安装 WSL2，可跳过此步骤。运行</span> <code>wsl --version</code> <span data-i18n="openclawd.step1TipTextEnd">检查。</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">2</span>
+                            <span data-i18n="openclawd.step2Title">安装 Node.js</span>
+                        </h2>
+                        <div class="step-content">
+                            <p data-i18n="openclawd.step2Desc">在 WSL2 Ubuntu 终端中执行：</p>
+                            <pre class="code-block"><code class="language-bash"># 安装 nvm (Node 版本管理器)
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+
+# 重新加载配置
+source ~/.bashrc
+
+# 安装 Node.js 22
+nvm install 22
+
+# 验证安装
+node -v  # 应显示 v22.x.x</code></pre>
+                        </div>
+                    </section>
+
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">3</span>
+                            <span data-i18n="openclawd.step3Title">安装 OpenClaw</span>
+                        </h2>
+                        <div class="step-content">
+                            <h4 data-i18n="openclawd.step3Method1">方式一：一键安装（推荐）</h4>
+                            <pre class="code-block"><code class="language-bash">curl -fsSL https://openclaw.ai/install.sh | bash</code></pre>
+
+                            <h4 data-i18n="openclawd.step3Method2">方式二：npm 安装</h4>
+                            <pre class="code-block"><code class="language-bash">npm install -g openclaw@latest</code></pre>
+
+                            <h4 data-i18n="openclawd.step3Verify">验证安装</h4>
+                            <pre class="code-block"><code class="language-bash">openclaw --version</code></pre>
+                        </div>
+                    </section>
+
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">4</span>
+                            <span data-i18n="openclawd.step4Title">配置 OpenClaw</span>
+                        </h2>
+                        <div class="step-content">
+                            <p data-i18n="openclawd.step4Desc">打开你的 OpenClaw 配置文件 <code>~/.openclaw/openclaw.json</code>，将其中的 <code>models</code> 和 <code>agents</code> 字段替换为以下内容：</p>
+
+                            <div class="notice notice-info">
+                                <strong>⚠️ 注意：</strong>只需替换 <code>models</code> 和 <code>agents</code> 两个字段，配置文件中的其他字段（如 <code>channels</code>、<code>gateway</code>、<code>plugins</code> 等）保持不变。
+                            </div>
+
+                            <h4 data-i18n="openclawd.step4Template">替换以下字段内容</h4>
+                            <pre class="code-block"><code class="language-json">"models": {
+  "providers": {
+    "augmentproxytop": {
+      "baseUrl": "https://api.augmentproxy.top",
+      "apiKey": "&lt;YOUR_API_KEY&gt;",
+      "api": "anthropic-messages",
+      "headers": {
+        "User-Agent": "curl/8.0"
+      },
+      "authHeader": true,
+      "models": [
+        {
+          "id": "claude-opus-4-6",
+          "name": "Claude Opus 4.6",
+          "reasoning": true,
+          "input": ["text", "image"],
+          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "contextWindow": 200000,
+          "maxTokens": 128000
+        }
+      ]
+    },
+    "openaixyz": {
+      "baseUrl": "https://api.augmentproxy.top/v1",
+      "apiKey": "&lt;YOUR_API_KEY&gt;",
+      "api": "openai-completions",
+      "headers": {
+        "User-Agent": "curl/8.0"
+      },
+      "authHeader": true,
+      "models": [
+        {
+          "id": "gpt-5.3-codex",
+          "name": "GPT-5.3 Codex",
+          "reasoning": true,
+          "input": ["text", "image"],
+          "cost": { "input": 1.75, "output": 14, "cacheRead": 0.175, "cacheWrite": 1.75 },
+          "contextWindow": 400000,
+          "maxTokens": 128000
+        }
+      ]
+    }
+  }
+},
+"agents": {
+  "defaults": {
+    "model": {
+      "primary": "augmentproxytop/claude-opus-4-6",
+      "fallbacks": ["openaixyz/gpt-5.3-codex"]
+    },
+    "models": {
+      "augmentproxytop/claude-opus-4-6": {},
+      "openaixyz/gpt-5.3-codex": {}
+    },
+    "workspace": "&lt;your_workspace_dir&gt;",
+    "compaction": {
+      "mode": "safeguard",
+      "reserveTokensFloor": 20000,
+      "maxHistoryShare": 0.7,
+      "memoryFlush": { "enabled": true, "softThresholdTokens": 10000 }
+    },
+    "maxConcurrent": 4,
+    "subagents": { "maxConcurrent": 8 }
+  },
+  "list": [{ "id": "main" }]
+},</code></pre>
+
+                            <div class="notice notice-info">
+                                <strong data-i18n="openclawd.step4Placeholder">占位符说明：</strong>
+                                <ul style="margin: 0.5rem 0 0 1rem; padding: 0;">
+                                    <li><code>&lt;YOUR_API_KEY&gt;</code>：替换为你在 <a href="https://api.augmentproxy.top" target="_blank">api.augmentproxy.top</a> 网站上获取的 API 令牌（两个 provider 需分别使用各自的 Key）</li>
+                                    <li><code>&lt;your_workspace_dir&gt;</code>：保持你原有配置中的 <code>workspace</code> 路径不变（如 <code>~/clawd</code>）</li>
+                                </ul>
+                            </div>
+
+                            <div class="notice notice-tip">
+                                <strong data-i18n="openclawd.step4Highlight">💡 配置亮点：</strong>
+                                <ul style="margin: 0.5rem 0 0 1rem; padding: 0;">
+                                    <li><code>claude-opus-4-6</code>：主力模型，200K 上下文窗口，最大输出 128K tokens</li>
+                                    <li><code>gpt-5.3-codex</code>：备用模型，400K 上下文窗口，主模型不可用时自动切换</li>
+                                    <li><code>fallbacks</code>：自动故障转移，主模型挂了无缝切到备用模型</li>
+                                    <li><code>compaction</code>：<span data-i18n="openclawd.step4HighlightCompaction">上下文压缩，自动管理长对话，避免 502 错误</span></li>
+                                    <li><code>reserveTokensFloor</code>：保留 20K tokens 给模型回复，防止上下文撑满</li>
+                                </ul>
+                            </div>
+
+                            <h4 data-i18n="openclawd.step4Verify">验证配置</h4>
+                            <pre class="code-block"><code class="language-bash"># 检查配置是否正确
+openclaw doctor
+
+# 重启服务使配置生效
+openclaw gateway restart</code></pre>
+                        </div>
+                    </section>
+
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">5</span>
+                            <span data-i18n="openclawd.step5Title">连接消息渠道</span>
+                        </h2>
+                        <div class="step-content">
+                            <h4 data-i18n="openclawd.step5Whatsapp">WhatsApp（扫码登录）</h4>
+                            <pre class="code-block"><code class="language-bash">openclaw channels login</code></pre>
+                            <p data-i18n="openclawd.step5WhatsappDesc">用 WhatsApp 扫描终端显示的二维码即可。</p>
+
+                            <h4 data-i18n="openclawd.step5Telegram">Telegram（Bot Token）</h4>
+                            <pre class="code-block"><code class="language-bash"># 先从 @BotFather 获取 Bot Token
+openclaw channels add --channel telegram --token "YOUR_BOT_TOKEN"</code></pre>
+                        </div>
+                    </section>
+
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">6</span>
+                            <span data-i18n="openclawd.step6Title">启动使用</span>
+                        </h2>
+                        <div class="step-content">
+                            <h4 data-i18n="openclawd.step6Commands">常用命令</h4>
+                            <pre class="code-block"><code class="language-bash"># 启动服务
+openclaw gateway start
+
+# 查看状态
+openclaw gateway status
+
+# 查看健康检查
+openclaw gateway health
+
+# 打开 Web 控制面板
+openclaw dashboard
+
+# 打开终端交互界面
+openclaw tui
+
+# 重启服务
+openclaw gateway restart
+
+# 停止服务
+openclaw gateway stop</code></pre>
+
+                            <h4 data-i18n="openclawd.step6ServiceMgmt">服务管理</h4>
+                            <pre class="code-block"><code class="language-bash"># 查看完整状态
+openclaw status
+
+# 运行诊断
+openclaw doctor
+
+# 自动修复问题
+openclaw doctor --fix</code></pre>
+                            <p data-i18n="openclawd.step6Desc">现在可以通过 WhatsApp 或 Telegram 给你的 Bot 发消息了！</p>
+                        </div>
+                    </section>
+
+                    <!-- FAQ Section -->
+                    <section class="faq-section">
+                        <h2 class="section-title" data-i18n="faq.title">常见问题</h2>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span data-i18n="openclawdFaq.commandNotFound">openclaw 命令找不到</span>
+                                <svg class="faq-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div class="faq-answer">
+                                <p data-i18n="openclawdFaq.commandNotFoundAnswer">npm 全局安装的 bin 目录不在 PATH 中。运行：</p>
+                                <pre class="code-block"><code class="language-bash">npm prefix -g  # 查看全局目录
+# 将输出的路径/bin 加入 PATH
+echo 'export PATH="$(npm prefix -g)/bin:$PATH"' >> ~/.bashrc
+source ~/.bashrc</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span data-i18n="openclawdFaq.configApi">如何配置使用中转 API？</span>
+                                <svg class="faq-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div class="faq-answer">
+                                <p>编辑配置文件 <code>~/.openclaw/openclaw.json</code>：</p>
+                                <pre class="code-block"><code class="language-json">{
+  "models": {
+    "providers": {
+      "anthropic": {
+        "baseUrl": "https://api.augmentproxy.top",
+        "apiKey": "your_api_key"
+      }
+    }
+  }
+}</code></pre>
+                                <p data-i18n="openclawdFaq.configApiAnswerEnd">或在 onboard 向导中选择自定义 Base URL。</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span data-i18n="openclawdFaq.whatsappFail">WhatsApp 扫码后无法连接</span>
+                                <svg class="faq-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div class="faq-answer">
+                                <ol>
+                                    <li data-i18n="openclawdFaq.whatsappFailAnswer1">确保手机和服务器网络通畅</li>
+                                    <li>尝试重新登录：<code>openclaw channels logout whatsapp && openclaw channels login</code></li>
+                                    <li>检查日志：<code>openclaw logs --follow</code></li>
+                                    <li data-i18n="openclawdFaq.whatsappFailAnswer4">如果是 Docker，确保端口映射正确</li>
+                                </ol>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span data-i18n="openclawdFaq.howToUpdate">如何更新 OpenClaw？</span>
+                                <svg class="faq-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div class="faq-answer">
+                                <pre class="code-block"><code class="language-bash"># npm 安装方式
+npm update -g openclaw
+
+# 或重新安装最新版
+npm install -g openclaw@latest
+
+# Docker 方式
+cd openclaw
+git pull
+./docker-setup.sh</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span data-i18n="openclawdFaq.supportedModels">支持哪些 AI 模型？</span>
+                                <svg class="faq-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div class="faq-answer">
+                                <p data-i18n="openclawdFaq.supportedModelsAnswer">OpenClaw 支持多种模型提供商：</p>
+                                <ul>
+                                    <li><strong>Anthropic:</strong> <span data-i18n="openclawdFaq.supportedModelsAnthropic">Claude 3.5/4 系列</span></li>
+                                    <li><strong>OpenAI:</strong> <span data-i18n="openclawdFaq.supportedModelsOpenai">GPT-4o, o1, o3 系列</span></li>
+                                    <li><strong>Google:</strong> <span data-i18n="openclawdFaq.supportedModelsGoogle">Gemini 系列</span></li>
+                                    <li><strong data-i18n="openclawdFaq.supportedModelsLocal">本地模型:</strong> Ollama, LM Studio 等</li>
+                                    <li><strong data-i18n="openclawdFaq.supportedModelsProxy">中转服务:</strong> 支持 OpenAI 兼容 API</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 相关资源 -->
+                    <section class="resources-card">
+                        <h2 data-i18n="resources.title">相关资源</h2>
+                        <div class="resource-links">
+                            <a href="https://docs.openclaw.ai" target="_blank" class="resource-link">
+                                <span class="resource-icon">📖</span>
+                                <span data-i18n="resources.docs">官方文档</span>
+                            </a>
+                            <a href="https://github.com/openclaw/openclaw" target="_blank" class="resource-link">
+                                <span class="resource-icon">💻</span>
+                                <span data-i18n="resources.github">GitHub 仓库</span>
+                            </a>
+                            <a href="https://discord.com/invite/clawd" target="_blank" class="resource-link">
+                                <span class="resource-icon">💬</span>
+                                <span data-i18n="resources.discord">Discord 社区</span>
+                            </a>
+                            <a href="https://clawhub.com" target="_blank" class="resource-link">
+                                <span class="resource-icon">🔌</span>
+                                <span data-i18n="resources.plugins">ClawdHub 插件市场</span>
+                            </a>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- macOS -->
+                <div class="platform-content" data-platform="macos">
+                    <section class="intro-card">
+                        <h2 data-i18n="openclawd.about">关于 OpenClawd</h2>
+                        <p data-i18n="openclawd.aboutDesc">OpenClaw 是一个强大的 AI 助理框架，支持多渠道接入（WhatsApp、Telegram、Discord 等），可以帮你处理日常任务、编程、文件管理等。</p>
+                        <div class="feature-list">
+                            <div class="feature-item">
+                                <span class="feature-icon">💬</span>
+                                <span data-i18n="openclawd.features.multiChannel">多渠道消息</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">🔧</span>
+                                <span data-i18n="openclawd.features.toolCall">工具调用</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">📁</span>
+                                <span data-i18n="openclawd.features.fileOps">文件操作</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">1</span>
+                            <span data-i18n="openclawd.step2Title">安装 Node.js</span>
+                        </h2>
+                        <div class="step-content">
+                            <h4 data-i18n="openclawd.step2DescMac">方式一：使用 Homebrew（推荐）</h4>
+                            <pre class="code-block"><code class="language-bash"># 安装 Homebrew（如未安装）
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# 安装 Node.js
+brew install node@22</code></pre>
+
+                            <h4 data-i18n="openclawd.step2DescMac2">方式二：使用 nvm</h4>
+                            <pre class="code-block"><code class="language-bash">curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+source ~/.zshrc
+nvm install 22</code></pre>
+
+                            <h4 data-i18n="openclawd.step2Verify">验证安装</h4>
+                            <pre class="code-block"><code class="language-bash">node -v  # 应显示 v22.x.x</code></pre>
+                        </div>
+                    </section>
+
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">2</span>
+                            <span data-i18n="openclawd.step3Title">安装 OpenClaw</span>
+                        </h2>
+                        <div class="step-content">
+                            <h4 data-i18n="openclawd.step3Method1">方式一：一键安装（推荐）</h4>
+                            <pre class="code-block"><code class="language-bash">curl -fsSL https://openclaw.ai/install.sh | bash</code></pre>
+
+                            <h4 data-i18n="openclawd.step3Method2">方式二：npm 安装</h4>
+                            <pre class="code-block"><code class="language-bash">npm install -g openclaw@latest</code></pre>
+
+                            <h4 data-i18n="openclawd.step3Verify">验证安装</h4>
+                            <pre class="code-block"><code class="language-bash">openclaw --version</code></pre>
+                        </div>
+                    </section>
+
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">3</span>
+                            <span data-i18n="openclawd.step4Title">配置 OpenClaw</span>
+                        </h2>
+                        <div class="step-content">
+                            <p data-i18n="openclawd.step4Desc">打开你的 OpenClaw 配置文件 <code>~/.openclaw/openclaw.json</code>，将其中的 <code>models</code> 和 <code>agents</code> 字段替换为以下内容：</p>
+
+                            <div class="notice notice-info">
+                                <strong>⚠️ 注意：</strong>只需替换 <code>models</code> 和 <code>agents</code> 两个字段，配置文件中的其他字段（如 <code>channels</code>、<code>gateway</code>、<code>plugins</code> 等）保持不变。
+                            </div>
+
+                            <h4 data-i18n="openclawd.step4Template">替换以下字段内容</h4>
+                            <pre class="code-block"><code class="language-json">"models": {
+  "providers": {
+    "augmentproxytop": {
+      "baseUrl": "https://api.augmentproxy.top",
+      "apiKey": "&lt;YOUR_API_KEY&gt;",
+      "api": "anthropic-messages",
+      "headers": {
+        "User-Agent": "curl/8.0"
+      },
+      "authHeader": true,
+      "models": [
+        {
+          "id": "claude-opus-4-6",
+          "name": "Claude Opus 4.6",
+          "reasoning": true,
+          "input": ["text", "image"],
+          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "contextWindow": 200000,
+          "maxTokens": 128000
+        }
+      ]
+    },
+    "openaixyz": {
+      "baseUrl": "https://api.augmentproxy.top/v1",
+      "apiKey": "&lt;YOUR_API_KEY&gt;",
+      "api": "openai-completions",
+      "headers": {
+        "User-Agent": "curl/8.0"
+      },
+      "authHeader": true,
+      "models": [
+        {
+          "id": "gpt-5.3-codex",
+          "name": "GPT-5.3 Codex",
+          "reasoning": true,
+          "input": ["text", "image"],
+          "cost": { "input": 1.75, "output": 14, "cacheRead": 0.175, "cacheWrite": 1.75 },
+          "contextWindow": 400000,
+          "maxTokens": 128000
+        }
+      ]
+    }
+  }
+},
+"agents": {
+  "defaults": {
+    "model": {
+      "primary": "augmentproxytop/claude-opus-4-6",
+      "fallbacks": ["openaixyz/gpt-5.3-codex"]
+    },
+    "models": {
+      "augmentproxytop/claude-opus-4-6": {},
+      "openaixyz/gpt-5.3-codex": {}
+    },
+    "workspace": "&lt;your_workspace_dir&gt;",
+    "compaction": {
+      "mode": "safeguard",
+      "reserveTokensFloor": 20000,
+      "maxHistoryShare": 0.7,
+      "memoryFlush": { "enabled": true, "softThresholdTokens": 10000 }
+    },
+    "maxConcurrent": 4,
+    "subagents": { "maxConcurrent": 8 }
+  },
+  "list": [{ "id": "main" }]
+},</code></pre>
+
+                            <div class="notice notice-info">
+                                <strong data-i18n="openclawd.step4Placeholder">占位符说明：</strong>
+                                <ul style="margin: 0.5rem 0 0 1rem; padding: 0;">
+                                    <li><code>&lt;YOUR_API_KEY&gt;</code>：替换为你在 <a href="https://api.augmentproxy.top" target="_blank">api.augmentproxy.top</a> 网站上获取的 API 令牌（两个 provider 需分别使用各自的 Key）</li>
+                                    <li><code>&lt;your_workspace_dir&gt;</code>：保持你原有配置中的 <code>workspace</code> 路径不变（如 <code>~/clawd</code>）</li>
+                                </ul>
+                            </div>
+
+                            <div class="notice notice-tip">
+                                <strong data-i18n="openclawd.step4Highlight">💡 配置亮点：</strong>
+                                <ul style="margin: 0.5rem 0 0 1rem; padding: 0;">
+                                    <li><code>claude-opus-4-6</code>：主力模型，200K 上下文窗口，最大输出 128K tokens</li>
+                                    <li><code>gpt-5.3-codex</code>：备用模型，400K 上下文窗口，主模型不可用时自动切换</li>
+                                    <li><code>fallbacks</code>：自动故障转移，主模型挂了无缝切到备用模型</li>
+                                    <li><code>compaction</code>：<span data-i18n="openclawd.step4HighlightCompaction">上下文压缩，自动管理长对话，避免 502 错误</span></li>
+                                    <li><code>reserveTokensFloor</code>：保留 20K tokens 给模型回复，防止上下文撑满</li>
+                                </ul>
+                            </div>
+
+                            <h4 data-i18n="openclawd.step4Verify">验证配置</h4>
+                            <pre class="code-block"><code class="language-bash"># 检查配置是否正确
+openclaw doctor
+
+# 重启服务使配置生效
+openclaw gateway restart</code></pre>
+                        </div>
+                    </section>
+
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">4</span>
+                            <span data-i18n="openclawd.step5Title">连接消息渠道</span>
+                        </h2>
+                        <div class="step-content">
+                            <h4 data-i18n="openclawd.step5Whatsapp">WhatsApp（扫码登录）</h4>
+                            <pre class="code-block"><code class="language-bash">openclaw channels login</code></pre>
+                            <p data-i18n="openclawd.step5WhatsappDesc">用 WhatsApp 扫描终端显示的二维码即可。</p>
+
+                            <h4 data-i18n="openclawd.step5Telegram">Telegram（Bot Token）</h4>
+                            <pre class="code-block"><code class="language-bash"># 先从 @BotFather 获取 Bot Token
+openclaw channels add --channel telegram --token "YOUR_BOT_TOKEN"</code></pre>
+
+                            <h4 data-i18n="openclawd.step5Discord">Discord</h4>
+                            <pre class="code-block"><code class="language-bash">openclaw channels add --channel discord --token "YOUR_BOT_TOKEN"</code></pre>
+                        </div>
+                    </section>
+
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">5</span>
+                            <span data-i18n="openclawd.step6Title">启动使用</span>
+                        </h2>
+                        <div class="step-content">
+                            <h4 data-i18n="openclawd.commonCommands">常用命令</h4>
+                            <pre class="code-block"><code class="language-bash"># 启动服务
+openclaw gateway start
+
+# 查看状态
+openclaw gateway status
+
+# 打开 Web 控制面板
+openclaw dashboard
+
+# 打开终端交互界面
+openclaw tui
+
+# 重启服务
+openclaw gateway restart
+
+# 停止服务
+openclaw gateway stop</code></pre>
+                        </div>
+                    </section>
+
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">🍎</span>
+                            macOS 桌面应用（可选）
+                        </h2>
+                        <div class="step-content">
+                            <p data-i18n="openclawd.macDesktopAppDesc">OpenClaw 提供 macOS 原生应用，支持菜单栏快捷操作和语音唤醒。</p>
+                            <pre class="code-block"><code class="language-bash"># 从源码构建
+git clone https://github.com/openclaw/openclaw.git
+cd openclaw
+pnpm install
+pnpm build:macos</code></pre>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Linux -->
+                <div class="platform-content" data-platform="linux">
+                    <section class="intro-card">
+                        <h2 data-i18n="openclawd.about">关于 OpenClawd</h2>
+                        <p data-i18n="openclawd.aboutDesc">OpenClaw 是一个强大的 AI 助理框架，支持多渠道接入（WhatsApp、Telegram、Discord 等），可以帮你处理日常任务、编程、文件管理等。</p>
+                    </section>
+
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">1</span>
+                            <span data-i18n="openclawd.step2Title">安装 Node.js</span>
+                        </h2>
+                        <div class="step-content">
+                            <h4 data-i18n="openclawd.ubuntuDebian">Ubuntu / Debian</h4>
+                            <pre class="code-block"><code class="language-bash"># 使用 NodeSource 安装
+curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
+sudo apt-get install -y nodejs
+
+# 验证
+node -v</code></pre>
+
+                            <h4 data-i18n="openclawd.fedora">Fedora / RHEL / CentOS</h4>
+                            <pre class="code-block"><code class="language-bash">sudo dnf install nodejs</code></pre>
+
+                            <h4 data-i18n="openclawd.archLinux">Arch Linux</h4>
+                            <pre class="code-block"><code class="language-bash">sudo pacman -S nodejs npm</code></pre>
+
+                            <h4 data-i18n="openclawd.nvm">通用方式：nvm</h4>
+                            <pre class="code-block"><code class="language-bash">curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+source ~/.bashrc
+nvm install 22</code></pre>
+                        </div>
+                    </section>
+
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">2</span>
+                            安装 OpenClaw
+                        </h2>
+                        <div class="step-content">
+                            <h4 data-i18n="openclawd.step3Method1">方式一：一键安装（推荐）</h4>
+                            <pre class="code-block"><code class="language-bash">curl -fsSL https://openclaw.ai/install.sh | bash</code></pre>
+
+                            <h4 data-i18n="openclawd.step3Method2">方式二：npm 安装</h4>
+                            <pre class="code-block"><code class="language-bash">npm install -g openclaw@latest</code></pre>
+
+                            <div class="notice notice-warning">
+                                <strong data-i18n="openclawd.permissionIssue">权限问题？</strong><span data-i18n="openclawd.permissionIssueDesc">避免使用 sudo，改用用户目录：</span>
+                            </div>
+                            <pre class="code-block"><code class="language-bash">mkdir -p ~/.npm-global
+npm config set prefix '~/.npm-global'
+echo 'export PATH=~/.npm-global/bin:$PATH' >> ~/.bashrc
+source ~/.bashrc
+npm install -g openclaw@latest</code></pre>
+                        </div>
+                    </section>
+
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">3</span>
+                            <span data-i18n="openclawd.step4Title">配置 OpenClaw</span>
+                        </h2>
+                        <div class="step-content">
+                            <p data-i18n="openclawd.step4Desc">打开你的 OpenClaw 配置文件 <code>~/.openclaw/openclaw.json</code>，将其中的 <code>models</code> 和 <code>agents</code> 字段替换为以下内容：</p>
+
+                            <div class="notice notice-info">
+                                <strong>⚠️ 注意：</strong>只需替换 <code>models</code> 和 <code>agents</code> 两个字段，配置文件中的其他字段（如 <code>channels</code>、<code>gateway</code>、<code>plugins</code> 等）保持不变。
+                            </div>
+
+                            <h4 data-i18n="openclawd.step4Template">替换以下字段内容</h4>
+                            <pre class="code-block"><code class="language-json">"models": {
+  "providers": {
+    "augmentproxytop": {
+      "baseUrl": "https://api.augmentproxy.top",
+      "apiKey": "&lt;YOUR_API_KEY&gt;",
+      "api": "anthropic-messages",
+      "headers": {
+        "User-Agent": "curl/8.0"
+      },
+      "authHeader": true,
+      "models": [
+        {
+          "id": "claude-opus-4-6",
+          "name": "Claude Opus 4.6",
+          "reasoning": true,
+          "input": ["text", "image"],
+          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "contextWindow": 200000,
+          "maxTokens": 128000
+        }
+      ]
+    },
+    "openaixyz": {
+      "baseUrl": "https://api.augmentproxy.top/v1",
+      "apiKey": "&lt;YOUR_API_KEY&gt;",
+      "api": "openai-completions",
+      "headers": {
+        "User-Agent": "curl/8.0"
+      },
+      "authHeader": true,
+      "models": [
+        {
+          "id": "gpt-5.3-codex",
+          "name": "GPT-5.3 Codex",
+          "reasoning": true,
+          "input": ["text", "image"],
+          "cost": { "input": 1.75, "output": 14, "cacheRead": 0.175, "cacheWrite": 1.75 },
+          "contextWindow": 400000,
+          "maxTokens": 128000
+        }
+      ]
+    }
+  }
+},
+"agents": {
+  "defaults": {
+    "model": {
+      "primary": "augmentproxytop/claude-opus-4-6",
+      "fallbacks": ["openaixyz/gpt-5.3-codex"]
+    },
+    "models": {
+      "augmentproxytop/claude-opus-4-6": {},
+      "openaixyz/gpt-5.3-codex": {}
+    },
+    "workspace": "&lt;your_workspace_dir&gt;",
+    "compaction": {
+      "mode": "safeguard",
+      "reserveTokensFloor": 20000,
+      "maxHistoryShare": 0.7,
+      "memoryFlush": { "enabled": true, "softThresholdTokens": 10000 }
+    },
+    "maxConcurrent": 4,
+    "subagents": { "maxConcurrent": 8 }
+  },
+  "list": [{ "id": "main" }]
+},</code></pre>
+
+                            <div class="notice notice-info">
+                                <strong data-i18n="openclawd.step4Placeholder">占位符说明：</strong>
+                                <ul style="margin: 0.5rem 0 0 1rem; padding: 0;">
+                                    <li><code>&lt;YOUR_API_KEY&gt;</code>：替换为你在 <a href="https://api.augmentproxy.top" target="_blank">api.augmentproxy.top</a> 网站上获取的 API 令牌（两个 provider 需分别使用各自的 Key）</li>
+                                    <li><code>&lt;your_workspace_dir&gt;</code>：保持你原有配置中的 <code>workspace</code> 路径不变（如 <code>~/clawd</code>）</li>
+                                </ul>
+                            </div>
+
+                            <div class="notice notice-tip">
+                                <strong data-i18n="openclawd.step4Highlight">💡 配置亮点：</strong>
+                                <ul style="margin: 0.5rem 0 0 1rem; padding: 0;">
+                                    <li><code>claude-opus-4-6</code>：主力模型，200K 上下文窗口，最大输出 128K tokens</li>
+                                    <li><code>gpt-5.3-codex</code>：备用模型，400K 上下文窗口，主模型不可用时自动切换</li>
+                                    <li><code>fallbacks</code>：自动故障转移，主模型挂了无缝切到备用模型</li>
+                                    <li><code>compaction</code>：<span data-i18n="openclawd.step4HighlightCompaction">上下文压缩，自动管理长对话，避免 502 错误</span></li>
+                                    <li><code>reserveTokensFloor</code>：保留 20K tokens 给模型回复，防止上下文撑满</li>
+                                </ul>
+                            </div>
+
+                            <h4 data-i18n="openclawd.step4Verify">验证配置</h4>
+                            <pre class="code-block"><code class="language-bash"># 检查配置是否正确
+openclaw doctor
+
+# 重启服务使配置生效
+openclaw gateway restart</code></pre>
+
+                            <h4 data-i18n="openclawd.step6ServiceMgmtLinux">服务管理（systemd）</h4>
+                            <pre class="code-block"><code class="language-bash"># 查看服务状态
+systemctl --user status openclaw
+
+# 重启服务
+systemctl --user restart openclaw
+
+# 查看日志
+journalctl --user -u openclaw -f</code></pre>
+                        </div>
+                    </section>
+
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">4</span>
+                            <span data-i18n="openclawd.step5Title">连接消息渠道</span>
+                        </h2>
+                        <div class="step-content">
+                            <h4 data-i18n="openclawd.step5Whatsapp">WhatsApp（扫码登录）</h4>
+                            <pre class="code-block"><code class="language-bash">openclaw channels login</code></pre>
+                            <p data-i18n="openclawd.step5WhatsappDesc">用 WhatsApp 扫描终端显示的二维码即可。</p>
+
+                            <h4 data-i18n="openclawd.step5Telegram">Telegram（Bot Token）</h4>
+                            <pre class="code-block"><code class="language-bash"># 先从 @BotFather 获取 Bot Token
+openclaw channels add --channel telegram --token "YOUR_BOT_TOKEN"</code></pre>
+
+                            <h4 data-i18n="openclawd.step5Discord">Discord</h4>
+                            <pre class="code-block"><code class="language-bash">openclaw channels add --channel discord --token "YOUR_BOT_TOKEN"</code></pre>
+                        </div>
+                    </section>
+
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">5</span>
+                            <span data-i18n="openclawd.step6Title">启动使用</span>
+                        </h2>
+                        <div class="step-content">
+                            <h4 data-i18n="openclawd.commonCommands">常用命令</h4>
+                            <pre class="code-block"><code class="language-bash"># 启动服务
+openclaw gateway start
+
+# 查看状态
+openclaw gateway status
+
+# 健康检查
+openclaw gateway health
+
+# 打开 Web 控制台
+openclaw dashboard
+
+# 打开终端交互界面
+openclaw tui
+
+# 重启服务
+openclaw gateway restart
+
+# 停止服务
+openclaw gateway stop
+
+# 运行诊断
+openclaw doctor
+
+# 自动修复问题
+openclaw doctor --fix</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- 相关资源 -->
+                    <section class="resources-card">
+                        <h2 data-i18n="resources.title">相关资源</h2>
+                        <div class="resource-links">
+                            <a href="https://docs.openclaw.ai" target="_blank" class="resource-link">
+                                <span class="resource-icon">📖</span>
+                                <span data-i18n="resources.docs">官方文档</span>
+                            </a>
+                            <a href="https://github.com/openclaw/openclaw" target="_blank" class="resource-link">
+                                <span class="resource-icon">💻</span>
+                                <span data-i18n="resources.github">GitHub 仓库</span>
+                            </a>
+                            <a href="https://discord.com/invite/clawd" target="_blank" class="resource-link">
+                                <span class="resource-icon">💬</span>
+                                <span data-i18n="resources.discord">Discord 社区</span>
+                            </a>
+                            <a href="https://clawhub.com" target="_blank" class="resource-link">
+                                <span class="resource-icon">🔌</span>
+                                <span data-i18n="resources.plugins">ClawdHub 插件市场</span>
+                            </a>
+                        </div>
+                    </section>
+                </div>
+            </article>
+
+            <!-- CC-Switch Content -->
+            <article class="product-content" id="content-cc-switch">
+                <!-- Windows -->
+                <div class="platform-content active" data-platform="windows">
+                    <section class="intro-card">
+                        <h2 data-i18n="ccSwitch.about">关于 CC-Switch</h2>
+                        <p data-i18n="ccSwitch.aboutDesc">CC-Switch 是一款跨平台桌面应用，帮助你轻松管理多个 AI API 提供商的配置，支持系统托盘快速切换。</p>
+                        <div class="feature-list">
+                            <div class="feature-item">
+                                <span class="feature-icon">⚡</span>
+                                <span data-i18n="ccSwitch.features.tray">系统托盘一键切换提供商</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">🔒</span>
+                                <span data-i18n="ccSwitch.features.storage">SQLite + JSON 双层安全存储</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">🎨</span>
+                                <span data-i18n="ccSwitch.features.preset">预设提供商 + 自定义 System Prompt</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">🔧</span>
+                                <span data-i18n="ccSwitch.features.mcp">MCP 服务器管理 + Skills 发现</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">🖥️</span>
+                                <span data-i18n="ccSwitch.features.crossPlatform">支持 Windows / macOS / Linux</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">1</span>
+                            <span data-i18n="ccSwitch.step1Title">下载安装</span>
+                        </h2>
+                        <div class="step-content">
+                            <p data-i18n="ccSwitch.step1Desc">从官方发布页下载软件：</p>
+                            <div class="download-options">
+                                <a href="https://github.com/farion1231/cc-switch/releases/download/v3.10.1/CC-Switch-v3.10.1-Windows.msi" class="download-btn" target="_blank">
+                                    <span class="download-icon">📦</span>
+                                    <div class="download-info">
+                                        <span class="download-name">CC-Switch-Windows.msi</span>
+                                        <span class="download-desc" data-i18n="ccSwitch.step1WinMsi">Windows 安装程序（推荐）</span>
+                                    </div>
+                                </a>
+                                <a href="https://github.com/farion1231/cc-switch/releases/download/v3.10.1/CC-Switch-v3.10.1-Windows-Portable.zip" class="download-btn secondary" target="_blank">
+                                    <span class="download-icon">📁</span>
+                                    <div class="download-info">
+                                        <span class="download-name">CC-Switch-Portable.zip</span>
+                                        <span class="download-desc" data-i18n="ccSwitch.step1WinPortable">便携版（免安装）</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <p class="download-note"><span data-i18n="ccSwitch.step1DownloadNote">或访问</span> <a href="https://github.com/farion1231/cc-switch/releases" target="_blank">GitHub Releases</a> <span data-i18n="ccSwitch.step1DownloadNoteEnd">页面下载最新版</span></p>
+                        </div>
+                    </section>
+
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">2</span>
+                            <span data-i18n="ccSwitch.step2Title">快速开始</span>
+                        </h2>
+                        <div class="step-content">
+                            <ol class="numbered-steps">
+                                <li>
+                                    <strong data-i18n="ccSwitch.step2Step1">添加提供商</strong>
+                                    <p data-i18n="ccSwitch.step2Step1Desc">打开 CC-Switch，点击「添加提供商」，填写名称、API 端点和密钥</p>
+                                    <div class="step-image">
+                                        <img loading="lazy" src="images/cc-switch-add-provider.png" alt="添加提供商截图">
+                                    </div>
+                                    <p data-i18n="ccSwitch.step2Step1Plugin">如需应用到claude code 插件，请勾选该选项：</p>
+                                    <div class="step-image">
+                                        <img loading="lazy" src="images/ScreenShot_2026-01-28_130158_303.png" alt="Claude Code插件选项截图">
+                                    </div>
+                                </li>
+                                <li>
+                                    <strong data-i18n="ccSwitch.step2Step2">启用配置</strong>
+                                    <p data-i18n="ccSwitch.step2Step2Desc">在提供商列表中，点击你想使用的提供商旁的「启用」按钮</p>
+                                    <div class="step-image">
+                                        <img loading="lazy" src="images/cc-switch-enable-provider.png" alt="启用配置截图">
+                                    </div>
+                                </li>
+                                <li>
+                                    <strong data-i18n="ccSwitch.step2Step3">重启终端</strong>
+                                    <p data-i18n="ccSwitch.step2Step3Desc">关闭并重新打开终端，环境变量将自动生效</p>
+                                </li>
+                            </ol>
+
+                            <div class="notice notice-info">
+                                <strong data-i18n="ccSwitch.step2Tip">提示：</strong><span data-i18n="ccSwitch.step2TipText">CC-Switch 会自动设置</span> <code>ANTHROPIC_BASE_URL</code> 和 <code>ANTHROPIC_AUTH_TOKEN</code> <span data-i18n="ccSwitch.step2TipTextEnd">环境变量。</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="resources-card">
+                        <h2 data-i18n="resources.title">相关资源</h2>
+                        <div class="resource-links">
+                            <a href="https://github.com/farion1231/cc-switch" target="_blank" class="resource-link">
+                                <span class="resource-icon">📘</span>
+                                <span data-i18n="ccSwitchResources.github">GitHub 仓库</span>
+                            </a>
+                            <a href="https://github.com/farion1231/cc-switch/wiki" target="_blank" class="resource-link">
+                                <span class="resource-icon">📖</span>
+                                <span data-i18n="ccSwitchResources.docs">使用文档</span>
+                            </a>
+                            <a href="https://github.com/farion1231/cc-switch/issues" target="_blank" class="resource-link">
+                                <span class="resource-icon">🐛</span>
+                                <span data-i18n="ccSwitchResources.issues">问题反馈</span>
+                            </a>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- macOS -->
+                <div class="platform-content" data-platform="macos">
+                    <section class="intro-card">
+                        <h2 data-i18n="ccSwitch.about">关于 CC-Switch</h2>
+                        <p data-i18n="ccSwitch.aboutDesc">CC-Switch 是一款跨平台桌面应用，帮助你轻松管理多个 AI API 提供商的配置，支持系统托盘快速切换。</p>
+                        <div class="feature-list">
+                            <div class="feature-item">
+                                <span class="feature-icon">⚡</span>
+                                <span data-i18n="ccSwitch.features.tray">系统托盘一键切换提供商</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">🔒</span>
+                                <span data-i18n="ccSwitch.features.storage">SQLite + JSON 双层安全存储</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">🎨</span>
+                                <span data-i18n="ccSwitch.features.preset">预设提供商 + 自定义 System Prompt</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">1</span>
+                            <span data-i18n="ccSwitch.step1Title">下载安装</span>
+                        </h2>
+                        <div class="step-content">
+                            <h4 data-i18n="ccSwitch.step1Homebrew">方式一：Homebrew（推荐）</h4>
+                            <pre class="code-block"><code class="language-bash"># 先添加 tap
+brew tap farion1231/ccswitch
+# 然后安装
+brew install --cask cc-switch</code></pre>
+
+                            <h4 data-i18n="ccSwitch.step1Manual">方式二：手动下载</h4>
+                            <div class="download-options">
+                                <a href="https://github.com/farion1231/cc-switch/releases/download/v3.10.1/CC-Switch-v3.10.1-macOS.zip" class="download-btn" target="_blank">
+                                    <span class="download-icon">📦</span>
+                                    <div class="download-info">
+                                        <span class="download-name">CC-Switch-macOS.zip</span>
+                                        <span class="download-desc">macOS 安装包</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <p class="download-note">或访问 <a href="https://github.com/farion1231/cc-switch/releases" target="_blank">GitHub Releases</a> 页面下载最新版</p>
+                        </div>
+                    </section>
+
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">2</span>
+                            快速开始
+                        </h2>
+                        <div class="step-content">
+                            <ol class="numbered-steps">
+                                <li>
+                                    <strong data-i18n="ccSwitch.step2Step1">添加提供商</strong>
+                                    <p data-i18n="ccSwitch.step2Step1DescShort">点击「添加提供商」配置 API</p>
+                                    <div class="step-image">
+                                        <img loading="lazy" src="images/cc-switch-add-provider.png" alt="添加提供商截图">
+                                    </div>
+                                    <p data-i18n="ccSwitch.step2Step1Plugin">如需应用到claude code 插件，请勾选该选项：</p>
+                                    <div class="step-image">
+                                        <img loading="lazy" src="images/ScreenShot_2026-01-28_130158_303.png" alt="Claude Code插件选项截图">
+                                    </div>
+                                </li>
+                                <li>
+                                    <strong data-i18n="ccSwitch.step2Step2">启用配置</strong>
+                                    <p data-i18n="ccSwitch.step2Step2DescShort">选择并启用你的提供商</p>
+                                    <div class="step-image">
+                                        <img loading="lazy" src="images/cc-switch-enable-provider.png" alt="启用配置截图">
+                                    </div>
+                                </li>
+                                <li><strong data-i18n="ccSwitch.step2Step3">重启终端</strong> - <span data-i18n="ccSwitch.step2Step3DescShort">新开终端窗口生效</span></li>
+                            </ol>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Linux -->
+                <div class="platform-content" data-platform="linux">
+                    <section class="intro-card">
+                        <h2 data-i18n="ccSwitch.about">关于 CC-Switch</h2>
+                        <p data-i18n="ccSwitch.aboutDesc">CC-Switch 是一款跨平台桌面应用，帮助你轻松管理多个 AI API 提供商的配置，支持系统托盘快速切换。</p>
+                    </section>
+
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">1</span>
+                            <span data-i18n="ccSwitch.step1Title">下载安装</span>
+                        </h2>
+                        <div class="step-content">
+                            <h4 data-i18n="ccSwitch.linuxDebian">Debian/Ubuntu</h4>
+                            <pre class="code-block"><code class="language-bash"># 从 GitHub Releases 下载 .deb 包安装</code></pre>
+
+                            <h4 data-i18n="ccSwitch.linuxArch">Arch Linux（推荐）</h4>
+                            <pre class="code-block"><code class="language-bash">paru -S cc-switch-bin</code></pre>
+
+                            <h4 data-i18n="ccSwitch.linuxOther">其他发行版</h4>
+                            <pre class="code-block"><code class="language-bash"># 下载 AppImage 或 Flatpak
+# Flatpak 安装：
+flatpak install --user cc-switch.flatpak
+flatpak run com.ccswitch.desktop</code></pre>
+                        </div>
+                    </section>
+
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">2</span>
+                            快速开始
+                        </h2>
+                        <div class="step-content">
+                            <ol class="numbered-steps">
+                                <li>
+                                    <strong data-i18n="ccSwitch.step2Step1">添加提供商</strong>
+                                    <p data-i18n="ccSwitch.step2Step1DescLinux">配置你的 API 提供商</p>
+                                    <div class="step-image">
+                                        <img loading="lazy" src="images/cc-switch-add-provider.png" alt="添加提供商截图">
+                                    </div>
+                                    <p data-i18n="ccSwitch.step2Step1Plugin">如需应用到claude code 插件，请勾选该选项：</p>
+                                    <div class="step-image">
+                                        <img loading="lazy" src="images/ScreenShot_2026-01-28_130158_303.png" alt="Claude Code插件选项截图">
+                                    </div>
+                                </li>
+                                <li>
+                                    <strong data-i18n="ccSwitch.step2Step2">启用配置</strong>
+                                    <p data-i18n="ccSwitch.step2Step2DescLinux">选择并启用提供商</p>
+                                    <div class="step-image">
+                                        <img loading="lazy" src="images/cc-switch-enable-provider.png" alt="启用配置截图">
+                                    </div>
+                                </li>
+                                <li><strong data-i18n="ccSwitch.step2Step3">重启终端</strong> - <span data-i18n="ccSwitch.step2Step3DescShort">新开终端窗口生效</span></li>
+                            </ol>
+                        </div>
+                    </section>
+                </div>
+            </article>
+
+            <!-- Opencode Content -->
+            <article class="product-content" id="content-opencode">
+                <!-- Windows -->
+                <div class="platform-content active" data-platform="windows">
+                    <section class="intro-card">
+                        <h2 data-i18n="opencode.about">关于 Opencode</h2>
+                        <p data-i18n="opencode.aboutDesc">Opencode 是一个开源的 AI 编程助手，支持多种 AI 模型和自定义配置。</p>
+                        <div class="feature-list">
+                            <div class="feature-item">
+                                <span class="feature-icon">🔓</span>
+                                <span data-i18n="opencode.features.opensource">完全开源，自由定制</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">🤖</span>
+                                <span data-i18n="opencode.features.multiModel">支持多种 AI 模型</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">🔌</span>
+                                <span data-i18n="opencode.features.plugins">丰富的插件生态</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">1</span>
+                            <span data-i18n="opencode.step1Title">安装 Opencode</span>
+                        </h2>
+                        <div class="step-content">
+                            <p data-i18n="opencode.step1Desc">选择以下任一方式安装 Opencode：</p>
+
+                            <div class="install-option">
+                                <h4 data-i18n="opencode.step1Method1">方式一：curl 一键安装（推荐）</h4>
+                                <pre class="code-block"><code class="language-powershell">curl -fsSL https://opencode.ai/install | bash</code></pre>
+                            </div>
+
+                            <div class="install-option">
+                                <h4 data-i18n="opencode.step1Method2">方式二：npm 安装</h4>
+                                <pre class="code-block"><code class="language-powershell">npm i -g opencode-ai</code></pre>
+                            </div>
+
+                            <div class="install-option">
+                                <h4 data-i18n="opencode.step1Method3">方式三：bun 安装</h4>
+                                <pre class="code-block"><code class="language-powershell">bun add -g opencode-ai</code></pre>
+                            </div>
+
+                            <div class="notice notice-warning">
+                                <strong data-i18n="opencode.step1NodeReq">前置条件（方式二、三需要）：</strong><span data-i18n="opencode.step1NodeReqText">需要先安装 Node.js 18+ 版本。</span>
+                                <ul style="margin: 8px 0 0 0; padding-left: 20px;">
+                                    <li><span data-i18n="opencode.step1NodeReqOfficial">官网下载：访问</span> <a href="https://nodejs.org" target="_blank" rel="noopener">nodejs.org</a> <span data-i18n="opencode.step1NodeReqOfficialEnd">下载 LTS 版本</span></li>
+                                    <li><span data-i18n="opencode.step1NodeReqWinget">或使用 winget：</span><code>winget install OpenJS.NodeJS.LTS</code></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">2</span>
+                            <span data-i18n="opencode.step2Title">配置模型</span>
+                        </h2>
+                        <div class="step-content">
+                            <p><span data-i18n="opencode.step2Desc">在C:/User/xxx/.config/opencode目录创建</span> <code>opencode.json</code> <span data-i18n="opencode.step2DescEnd">配置文件：</span></p>
+
+                            <div class="notice notice-tip">
+                                <strong data-i18n="opencode.step2Shortcut">💡 快捷方式：</strong><span data-i18n="opencode.step2ShortcutText">可使用</span> <a href="javascript:void(0)" class="cc-switch-link" onclick="switchToProduct('cc-switch')" data-i18n="opencode.step2ShortcutLink">CC-Switch</a> <span data-i18n="opencode.step2ShortcutTextEnd">工具一键配置模型，无需手动编辑配置文件。</span>
+                            </div>
+
+                            <pre class="code-block"><code class="language-jsonc">{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+        "anthropic": {
+            "options": {
+                "baseURL": "https://api.augmentproxy.top/v1"
+            },
+			"models": {
+        "claude-opus-4-5-20251101": { "name": "claude-opus-4-5-20251101", "thinking": true },
+        "claude-sonnet-4-5-20250929": { "name": "claude-sonnet-4-5-20250929", "thinking": true },
+        "claude-haiku-4-5-20251001": { "name": "claude-haiku-4-5-20251001", "thinking": true }
+      }
+        },
+        "openai": {
+            "options": {
+                "baseURL": "https://api.augmentproxy.top/v1"
+            },
+            "models": {
+                "gpt-5.2": {
+                    "options": {
+                        "include": [
+                            "reasoning.encrypted_content"
+                        ],
+                        "store": false,
+                        "reasoningEffort": "xhigh",
+                        "textVerbosity": "xhigh",
+                        "reasoningSummary": "auto"
+                    }
+                },
+                "gpt-5.2-codex": {
+                    "options": {
+                        "include": [
+                            "reasoning.encrypted_content"
+                        ],
+                        "store": false,
+                        "reasoningEffort": "xhigh",
+                        "textVerbosity": "xhigh",
+                        "reasoningSummary": "auto"
+                    }
+                }
+            }
+        },
+    "google": {
+      "npm": "@ai-sdk/google",
+      "name": "google",
+      "options": { "baseURL": "https://api.augmentproxy.top/v1beta" },
+      "models": {
+        "gemini-3-pro-preview": { "name": "gemini-3-pro-preview", "thinking": true },
+        "gemini-3-flash-preview": { "name": "gemini-3-flash-preview", "thinking": true },
+        "gemini-2.5-flash-lite": { "name": "gemini-2.5-flash-lite", "thinking": true }
+      }
+    }
+    },
+  "model": "anthropic/claude-opus-4-5-20251101",
+  "small_model": "google/gemini-3-flash-preview",
+  
+  "mcp": {
+    "context7": {
+      "type": "local",
+      "command": [
+        "pnpx",
+        "@upstash/context7-mcp"
+      ],
+      "enabled": true
+    }
+  }
+}</code></pre>
+
+                            <div class="notice notice-info">
+                                <strong data-i18n="opencode.step2Tip">提示：</strong><span data-i18n="opencode.step2TipText">使用</span> <code>.jsonc</code> <span data-i18n="opencode.step2TipTextEnd">扩展名可以添加注释，便于理解配置项。</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">3</span>
+                            <span data-i18n="opencode.step3Title">连接 API</span>
+                        </h2>
+                        <div class="step-content">
+                            <p data-i18n="opencode.step3Desc">在 Opencode 中使用 /connect 命令验证连接：</p>
+                            <pre class="code-block"><code class="language-bash">opencode
+> /connect</code></pre>
+
+                            <p data-i18n="opencode.step3Success">成功后会显示模型信息和可用功能。</p>
+                            
+                            <div class="step-image">
+                                <img loading="lazy" src="images/ScreenShot_2026-01-28_192458_423.png" alt="连接API截图1">
+                            </div>
+                            <div class="step-image">
+                                <img loading="lazy" src="images/ScreenShot_2026-01-28_192542_637.png" alt="连接API截图2">
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Oh-my-opencode 子章节 -->
+                    <section class="subsection">
+                        <h2 class="subsection-title">
+                            <span class="subsection-icon">🔌</span>
+                            <span data-i18n="ohmyopencode.title">Oh-my-opencode 插件</span>
+                        </h2>
+
+                        <div class="step-card">
+                            <h3 class="step-title">
+                                <span class="step-number">1</span>
+                                <span data-i18n="ohmyopencode.step1Title">安装插件</span>
+                            </h3>
+                            <div class="step-content">
+                                <p data-i18n="ohmyopencode.step1Desc">复制以下提示并粘贴到你的 LLM 智能体（Claude Code、AmpCode、Cursor 等）：</p>
+                                <pre class="code-block"><code class="language-text">按照以下说明安装和配置 oh-my-opencode：
+https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/refs/heads/master/docs/guide/installation.md</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="step-card">
+                            <h3 class="step-title">
+                                <span class="step-number">2</span>
+                                <span data-i18n="ohmyopencode.step2Title">配置子代理模型</span>
+                            </h3>
+                            <div class="step-content">
+                                <p>在 <code>~/.config/opencode</code> 目录创建 <code>oh-my-opencode.json</code> 配置文件：</p>
+                                <pre class="code-block"><code class="language-jsonc">{
+  "agents": {
+    "sisyphus": {
+      "model": "anthropic/claude-opus-4-5-thinking",
+      "enabled": true
+    },
+    "oracle": {
+      "model": "openai/gpt-5.2-codex",
+      "enabled": true
+    },
+    "frontend-ui-ux-engineer": {
+      "model": "google/gemini-3-pro-preview",
+      "enabled": true
+    },
+    "document-writer": {
+      "model": "google/gemini-3-flash-preview",
+      "enabled": true
+    },
+    "multimodal-looker": {
+      "model": "google/gemini-3-flash-preview",
+      "enabled": true
+    },
+    "explore": {
+      "model": "google/gemini-3-flash-preview",
+      "enabled": true
+    },
+    "librarian": {
+      "model": "anthropic/claude-sonnet-4-5-thinking",
+      "enabled": true
+    }
+  },
+  "hooks": {
+    "ultrawork": {
+      "enabled": true
+    },
+    "prometheus": {
+      "enabled": true
+    }
+  },
+  "subscriptions": {
+    "claude": "max20",
+    "chatgpt": true,
+    "gemini": true,
+    "copilot": false
+  },
+  "google_auth": false
+}</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="models-list">
+                            <h4 data-i18n="ohmyopencode.availableModels">可用模型</h4>
+                            <div class="model-grid">
+                                <div class="model-item">
+                                    <span class="model-provider">Anthropic</span>
+                                    <code>claude-sonnet-4-20250514</code>
+                                </div>
+                                <div class="model-item">
+                                    <span class="model-provider">Anthropic</span>
+                                    <code>claude-3-haiku-20240307</code>
+                                </div>
+                                <div class="model-item">
+                                    <span class="model-provider">OpenAI</span>
+                                    <code>gpt-4-turbo</code>
+                                </div>
+                                <div class="model-item">
+                                    <span class="model-provider">OpenAI</span>
+                                    <code>gpt-4o</code>
+                                </div>
+                                <div class="model-item">
+                                    <span class="model-provider">Google</span>
+                                    <code>gemini-pro</code>
+                                </div>
+                                <div class="model-item">
+                                    <span class="model-provider">Google</span>
+                                    <code>gemini-2.0-flash-exp</code>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- macOS -->
+                <div class="platform-content" data-platform="macos">
+                    <section class="intro-card">
+                        <h2 data-i18n="opencode.about">关于 Opencode</h2>
+                        <p data-i18n="opencode.aboutDesc">Opencode 是一个开源的 AI 编程助手，支持多种 AI 模型和自定义配置。</p>
+                    </section>
+
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">1</span>
+                            <span data-i18n="opencode.step1Title">安装 Opencode</span>
+                        </h2>
+                        <div class="step-content">
+                            <h4 data-i18n="opencode.step1Method1Mac">方式一：curl（推荐）</h4>
+                            <pre class="code-block"><code class="language-bash">curl -fsSL https://opencode.ai/install | bash</code></pre>
+
+                            <h4 data-i18n="opencode.step1Method2Mac">方式二：Homebrew</h4>
+                            <pre class="code-block"><code class="language-bash">brew install anomalyco/tap/opencode</code></pre>
+
+                            <h4 data-i18n="opencode.step1NodeMac">安装 Node.js（npm 方式需要）</h4>
+                            <p data-i18n="opencode.step1NodeMacDesc">Opencode 需要 Node.js 18+ 版本。使用 Homebrew 安装：</p>
+                            <pre class="code-block"><code class="language-bash">brew install node@20</code></pre>
+
+                            <h4 data-i18n="opencode.step1Method3Mac">方式三：npm</h4>
+                            <pre class="code-block"><code class="language-bash">npm i -g opencode-ai</code></pre>
+                        </div>
+                    </section>
+
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">2</span>
+                            配置模型
+                        </h2>
+                        <div class="step-content">
+                            <p>在 <code>~/.config/opencode</code> 目录创建 <code>opencode.json</code> 配置文件：</p>
+
+                            <div class="notice notice-tip">
+                                <strong data-i18n="opencode.step2Shortcut">💡 快捷方式：</strong><span data-i18n="opencode.step2ShortcutText">可使用</span> <a href="javascript:void(0)" class="cc-switch-link" onclick="switchToProduct('cc-switch')" data-i18n="opencode.step2ShortcutLink">CC-Switch</a> <span data-i18n="opencode.step2ShortcutTextEnd">工具一键配置模型，无需手动编辑配置文件。</span>
+                            </div>
+
+                            <pre class="code-block"><code class="language-jsonc">{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+        "anthropic": {
+            "options": {
+                "baseURL": "https://api.augmentproxy.top/v1"
+            },
+			"models": {
+        "claude-opus-4-5-20251101": { "name": "claude-opus-4-5-20251101", "thinking": true },
+        "claude-sonnet-4-5-20250929": { "name": "claude-sonnet-4-5-20250929", "thinking": true },
+        "claude-haiku-4-5-20251001": { "name": "claude-haiku-4-5-20251001", "thinking": true }
+      }
+        },
+        "openai": {
+            "options": {
+                "baseURL": "https://api.augmentproxy.top/v1"
+            },
+            "models": {
+                "gpt-5.2": {
+                    "options": {
+                        "include": [
+                            "reasoning.encrypted_content"
+                        ],
+                        "store": false,
+                        "reasoningEffort": "xhigh",
+                        "textVerbosity": "xhigh",
+                        "reasoningSummary": "auto"
+                    }
+                },
+                "gpt-5.2-codex": {
+                    "options": {
+                        "include": [
+                            "reasoning.encrypted_content"
+                        ],
+                        "store": false,
+                        "reasoningEffort": "xhigh",
+                        "textVerbosity": "xhigh",
+                        "reasoningSummary": "auto"
+                    }
+                }
+            }
+        },
+    "google": {
+      "npm": "@ai-sdk/google",
+      "name": "google",
+      "options": { "baseURL": "https://api.augmentproxy.top/v1beta" },
+      "models": {
+        "gemini-3-pro-preview": { "name": "gemini-3-pro-preview", "thinking": true },
+        "gemini-3-flash-preview": { "name": "gemini-3-flash-preview", "thinking": true },
+        "gemini-2.5-flash-lite": { "name": "gemini-2.5-flash-lite", "thinking": true }
+      }
+    }
+    },
+  "model": "anthropic/claude-opus-4-5-20251101",
+  "small_model": "google/gemini-3-flash-preview",
+  
+  "mcp": {
+    "context7": {
+      "type": "local",
+      "command": [
+        "pnpx",
+        "@upstash/context7-mcp"
+      ],
+      "enabled": true
+    }
+  }
+}</code></pre>
+                        </div>
+                    </section>
+
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">3</span>
+                            连接 API
+                        </h2>
+                        <div class="step-content">
+                            <pre class="code-block"><code class="language-bash">opencode
+> /connect</code></pre>
+                            
+                            <div class="step-image">
+                                <img loading="lazy" src="images/ScreenShot_2026-01-28_192458_423.png" alt="连接API截图1">
+                            </div>
+                            <div class="step-image">
+                                <img loading="lazy" src="images/ScreenShot_2026-01-28_192542_637.png" alt="连接API截图2">
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Oh-my-opencode 子章节 -->
+                    <section class="subsection">
+                        <h2 class="subsection-title">
+                            <span class="subsection-icon">🔌</span>
+                            <span data-i18n="ohmyopencode.title">Oh-my-opencode 插件</span>
+                        </h2>
+
+                        <div class="step-card">
+                            <h3 class="step-title">
+                                <span class="step-number">1</span>
+                                <span data-i18n="ohmyopencode.step1Title">安装插件</span>
+                            </h3>
+                            <div class="step-content">
+                                <p data-i18n="ohmyopencode.step1Desc">复制以下提示并粘贴到你的 LLM 智能体（Claude Code、AmpCode、Cursor 等）：</p>
+                                <pre class="code-block"><code class="language-text">按照以下说明安装和配置 oh-my-opencode：
+https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/refs/heads/master/docs/guide/installation.md</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="step-card">
+                            <h3 class="step-title">
+                                <span class="step-number">2</span>
+                                <span data-i18n="ohmyopencode.step2Title">配置子代理模型</span>
+                            </h3>
+                            <div class="step-content">
+                                <p>在 <code>~/.config/opencode</code> 目录创建 <code>oh-my-opencode.json</code> 配置文件：</p>
+                                <pre class="code-block"><code class="language-jsonc">{
+  "agents": {
+    "sisyphus": {
+      "model": "anthropic/claude-opus-4-5-thinking",
+      "enabled": true
+    },
+    "oracle": {
+      "model": "openai/gpt-5.2-codex",
+      "enabled": true
+    },
+    "frontend-ui-ux-engineer": {
+      "model": "google/gemini-3-pro-preview",
+      "enabled": true
+    },
+    "document-writer": {
+      "model": "google/gemini-3-flash-preview",
+      "enabled": true
+    },
+    "multimodal-looker": {
+      "model": "google/gemini-3-flash-preview",
+      "enabled": true
+    },
+    "explore": {
+      "model": "google/gemini-3-flash-preview",
+      "enabled": true
+    },
+    "librarian": {
+      "model": "anthropic/claude-sonnet-4-5-thinking",
+      "enabled": true
+    }
+  },
+  "hooks": {
+    "ultrawork": {
+      "enabled": true
+    },
+    "prometheus": {
+      "enabled": true
+    }
+  },
+  "subscriptions": {
+    "claude": "max20",
+    "chatgpt": true,
+    "gemini": true,
+    "copilot": false
+  },
+  "google_auth": false
+}</code></pre>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Linux -->
+                <div class="platform-content" data-platform="linux">
+                    <section class="intro-card">
+                        <h2 data-i18n="opencode.about">关于 Opencode</h2>
+                        <p data-i18n="opencode.aboutDesc">Opencode 是一个开源的 AI 编程助手，支持多种 AI 模型和自定义配置。</p>
+                    </section>
+
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">1</span>
+                            <span data-i18n="opencode.step1Title">安装 Opencode</span>
+                        </h2>
+                        <div class="step-content">
+                            <h4 data-i18n="opencode.step1Method1Mac">方式一：curl（推荐）</h4>
+                            <pre class="code-block"><code class="language-bash">curl -fsSL https://opencode.ai/install | bash</code></pre>
+
+                            <h4 data-i18n="opencode.step1NodeLinux">安装 Node.js（npm/bun 方式需要）</h4>
+                            <p data-i18n="opencode.step1NodeLinuxDesc">Opencode 需要 Node.js 18+ 版本。选择以下任一方式安装：</p>
+
+                            <h5 data-i18n="openclawd.ubuntuDebian">Ubuntu/Debian</h5>
+                            <pre class="code-block"><code class="language-bash">curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt-get install -y nodejs</code></pre>
+
+                            <h5 data-i18n="opencode.fedoraRhel">Fedora/RHEL</h5>
+                            <pre class="code-block"><code class="language-bash">sudo dnf install nodejs</code></pre>
+
+                            <h5 data-i18n="openclawd.archLinux">Arch Linux</h5>
+                            <pre class="code-block"><code class="language-bash">sudo pacman -S nodejs npm</code></pre>
+
+                            <h4 data-i18n="opencode.step1Method2">方式二：npm</h4>
+                            <pre class="code-block"><code class="language-bash">npm i -g opencode-ai</code></pre>
+
+                            <h4 data-i18n="opencode.step1Method3">方式三：bun</h4>
+                            <pre class="code-block"><code class="language-bash">bun add -g opencode-ai</code></pre>
+
+                            <h4 data-i18n="opencode.step1Method4">方式四：Arch Linux（AUR）</h4>
+                            <pre class="code-block"><code class="language-bash">paru -S opencode</code></pre>
+                        </div>
+                    </section>
+
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">2</span>
+                            配置模型
+                        </h2>
+                        <div class="step-content">
+                            <p>在 <code>~/.config/opencode</code> 目录创建 <code>opencode.json</code> 配置文件：</p>
+
+                            <div class="notice notice-tip">
+                                <strong data-i18n="opencode.step2Shortcut">💡 快捷方式：</strong><span data-i18n="opencode.step2ShortcutText">可使用</span> <a href="javascript:void(0)" class="cc-switch-link" onclick="switchToProduct('cc-switch')" data-i18n="opencode.step2ShortcutLink">CC-Switch</a> <span data-i18n="opencode.step2ShortcutTextEnd">工具一键配置模型，无需手动编辑配置文件。</span>
+                            </div>
+
+                            <pre class="code-block"><code class="language-jsonc">{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+        "anthropic": {
+            "options": {
+                "baseURL": "https://api.augmentproxy.top/v1"
+            },
+			"models": {
+        "claude-opus-4-5-20251101": { "name": "claude-opus-4-5-20251101", "thinking": true },
+        "claude-sonnet-4-5-20250929": { "name": "claude-sonnet-4-5-20250929", "thinking": true },
+        "claude-haiku-4-5-20251001": { "name": "claude-haiku-4-5-20251001", "thinking": true }
+      }
+        },
+        "openai": {
+            "options": {
+                "baseURL": "https://api.augmentproxy.top/v1"
+            },
+            "models": {
+                "gpt-5.2": {
+                    "options": {
+                        "include": [
+                            "reasoning.encrypted_content"
+                        ],
+                        "store": false,
+                        "reasoningEffort": "xhigh",
+                        "textVerbosity": "xhigh",
+                        "reasoningSummary": "auto"
+                    }
+                },
+                "gpt-5.2-codex": {
+                    "options": {
+                        "include": [
+                            "reasoning.encrypted_content"
+                        ],
+                        "store": false,
+                        "reasoningEffort": "xhigh",
+                        "textVerbosity": "xhigh",
+                        "reasoningSummary": "auto"
+                    }
+                }
+            }
+        },
+    "google": {
+      "npm": "@ai-sdk/google",
+      "name": "google",
+      "options": { "baseURL": "https://api.augmentproxy.top/v1beta" },
+      "models": {
+        "gemini-3-pro-preview": { "name": "gemini-3-pro-preview", "thinking": true },
+        "gemini-3-flash-preview": { "name": "gemini-3-flash-preview", "thinking": true },
+        "gemini-2.5-flash-lite": { "name": "gemini-2.5-flash-lite", "thinking": true }
+      }
+    }
+    },
+  "model": "anthropic/claude-opus-4-5-20251101",
+  "small_model": "google/gemini-3-flash-preview",
+  
+  "mcp": {
+    "context7": {
+      "type": "local",
+      "command": [
+        "pnpx",
+        "@upstash/context7-mcp"
+      ],
+      "enabled": true
+    }
+  }
+}</code></pre>
+                        </div>
+                    </section>
+
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">3</span>
+                            连接 API
+                        </h2>
+                        <div class="step-content">
+                            <pre class="code-block"><code class="language-bash">opencode
+> /connect</code></pre>
+                            
+                            <div class="step-image">
+                                <img loading="lazy" src="images/ScreenShot_2026-01-28_192458_423.png" alt="连接API截图1">
+                            </div>
+                            <div class="step-image">
+                                <img loading="lazy" src="images/ScreenShot_2026-01-28_192542_637.png" alt="连接API截图2">
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Oh-my-opencode 子章节 -->
+                    <section class="subsection">
+                        <h2 class="subsection-title">
+                            <span class="subsection-icon">🔌</span>
+                            <span data-i18n="ohmyopencode.title">Oh-my-opencode 插件</span>
+                        </h2>
+
+                        <div class="step-card">
+                            <h3 class="step-title">
+                                <span class="step-number">1</span>
+                                <span data-i18n="ohmyopencode.step1Title">安装插件</span>
+                            </h3>
+                            <div class="step-content">
+                                <p data-i18n="ohmyopencode.step1Desc">复制以下提示并粘贴到你的 LLM 智能体（Claude Code、AmpCode、Cursor 等）：</p>
+                                <pre class="code-block"><code class="language-text">按照以下说明安装和配置 oh-my-opencode：
+https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/refs/heads/master/docs/guide/installation.md</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="step-card">
+                            <h3 class="step-title">
+                                <span class="step-number">2</span>
+                                <span data-i18n="ohmyopencode.step2Title">配置子代理模型</span>
+                            </h3>
+                            <div class="step-content">
+                                <p>在 <code>~/.config/opencode</code> 目录创建 <code>oh-my-opencode.json</code> 配置文件：</p>
+                                <pre class="code-block"><code class="language-jsonc">{
+  "agents": {
+    "sisyphus": {
+      "model": "anthropic/claude-opus-4-5-thinking",
+      "enabled": true
+    },
+    "oracle": {
+      "model": "openai/gpt-5.2-codex",
+      "enabled": true
+    },
+    "frontend-ui-ux-engineer": {
+      "model": "google/gemini-3-pro-preview",
+      "enabled": true
+    },
+    "document-writer": {
+      "model": "google/gemini-3-flash-preview",
+      "enabled": true
+    },
+    "multimodal-looker": {
+      "model": "google/gemini-3-flash-preview",
+      "enabled": true
+    },
+    "explore": {
+      "model": "google/gemini-3-flash-preview",
+      "enabled": true
+    },
+    "librarian": {
+      "model": "anthropic/claude-sonnet-4-5-thinking",
+      "enabled": true
+    }
+  },
+  "hooks": {
+    "ultrawork": {
+      "enabled": true
+    },
+    "prometheus": {
+      "enabled": true
+    }
+  },
+  "subscriptions": {
+    "claude": "max20",
+    "chatgpt": true,
+    "gemini": true,
+    "copilot": false
+  },
+  "google_auth": false
+}</code></pre>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </article>
+
+            <!-- VS Code / Cursor Content -->
+            <article class="product-content" id="content-vscode-cursor">
+                <div class="platform-content active" data-platform="windows">
+                    <section class="intro-card">
+                        <h2>在 VS Code / Cursor 等支持 Claude Code 插件的 IDE 中使用 Claude Code</h2>
+                        <p>VS Code 和 Cursor 的配置方式完全一致，按以下步骤配置即可通过 API 中转使用 Claude Code 插件。</p>
+                        <div class="feature-list">
+                            <div class="feature-item">
+                                <span class="feature-icon">🔌</span>
+                                <span>Claude Code 官方插件</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">⚙️</span>
+                                <span>CC Switch 一键配置</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">🚀</span>
+                                <span>无需官方账号登录</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">💡</span>
+                                <span>VS Code / Cursor 通用</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">1</span>
+                            <span>安装 Claude Code 插件</span>
+                        </h2>
+                        <div class="step-content">
+                            <p>在 VS Code 或 Cursor 的扩展商店中搜索 <strong>Claude Code</strong>（由 Anthropic 官方发布），点击安装。</p>
+                            <div class="notice notice-info">
+                                <strong>💡 提示：</strong>VS Code 和 Cursor 的配置方式完全一致，以下步骤通用。
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">2</span>
+                            <span>安装 CC Switch 配置工具</span>
+                        </h2>
+                        <div class="step-content">
+                            <p><a href="https://github.com/farion1231/cc-switch/releases/latest" target="_blank">CC Switch</a> 是一个开源桌面应用，可以一键配置 Claude Code 的 API 中转地址和密钥。</p>
+                            <p>前往 <a href="https://github.com/farion1231/cc-switch/releases/latest" target="_blank">GitHub Releases</a> 下载对应平台的安装包：</p>
+                            <ul style="margin: 8px 0 12px 20px; color: var(--text-secondary);">
+                                <li>Windows：下载 <code>.exe</code> 或 <code>.msi</code> 安装包</li>
+                                <li>macOS：下载 <code>.dmg</code> 安装包</li>
+                                <li>Linux：下载 <code>.AppImage</code> 或 <code>.deb</code></li>
+                            </ul>
+                            <div class="notice notice-warning">
+                                <strong>⚠️ 安装时遇到安全提示？</strong>
+                                <strong style="font-weight:400;">Windows：</strong>弹出 SmartScreen 提示时，点击「更多信息」→「仍要运行」。<br>
+                                <strong style="font-weight:400;">macOS：</strong>提示"无法验证开发者"时，前往「系统设置 → 隐私与安全性」，找到 CC Switch 点击「仍要打开」。<br>
+                                <strong style="font-weight:400;">Linux：</strong>AppImage 需要先赋予执行权限：<code>chmod +x cc-switch-*.AppImage</code>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">3</span>
+                            <span>配置 API 中转</span>
+                        </h2>
+                        <div class="step-content">
+                            <p>打开 CC Switch，添加一个新的 Provider：</p>
+                            <ul style="margin: 8px 0 12px 20px; color: var(--text-secondary);">
+                                <li>API Base URL 填写：<code>https://api.augmentproxy.top</code></li>
+                                <li>API Key 填写你在控制台获取的密钥</li>
+                                <li>在设置中开启「应用到 Claude Code 插件」选项</li>
+                            </ul>
+                            <p>配置完成后，CC Switch 会自动将中转地址写入 Claude Code 的配置中。</p>
+                            <img src="images/cc-switch-settings.jpg" alt="CC Switch 设置 - 应用到 Claude Code 插件" style="max-width: 100%; border-radius: var(--radius-md); border: 1px solid var(--border-primary); margin: 12px 0;" loading="lazy" />
+                        </div>
+                    </section>
+
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">4</span>
+                            <span>跳过官方登录页面</span>
+                        </h2>
+                        <div class="step-content">
+                            <p>使用 API 中转时，需要跳过 Claude 官方的登录验证。通常 CC Switch 配置后即可自动跳过，如果仍然弹出登录页面，请按顺序尝试以下方法：</p>
+
+                            <h4 style="margin: 16px 0 8px; color: var(--text-primary);">方法一：修改 config.json</h4>
+                            <p>创建或编辑 <code>~/.claude/config.json</code>，写入以下内容后重启插件：</p>
+                            <pre class="code-block"><code class="language-json">{
+    "primaryApiKey": "augmentproxytop"
+}</code></pre>
+                            <img src="images/config-json.jpg" alt="在 ~/.claude/config.json 中设置 primaryApiKey" style="max-width: 100%; border-radius: var(--radius-md); border: 1px solid var(--border-primary); margin: 12px 0;" loading="lazy" />
+
+                            <h4 style="margin: 16px 0 8px; color: var(--text-primary);">方法二：禁用登录提示</h4>
+                            <p>在 VS Code / Cursor 设置中搜索 <code>Claude Code</code>，勾选 <strong>Disable Login Prompt</strong> 选项。</p>
+                            <img src="images/disable-login-prompt.jpg" alt="在 VS Code 设置中勾选 Claude Code: Disable Login Prompt" style="max-width: 100%; border-radius: var(--radius-md); border: 1px solid var(--border-primary); margin: 12px 0;" loading="lazy" />
+
+                            <h4 style="margin: 16px 0 8px; color: var(--text-primary);">方法三：跳过初次安装引导</h4>
+                            <p>在 <code>~/.claude.json</code>（与 <code>.claude</code> 文件夹同级）中添加以下字段：</p>
+                            <pre class="code-block"><code class="language-json">{
+    "hasCompletedOnboarding": true
+}</code></pre>
+                            <img src="images/claude-json-location.jpg" alt=".claude.json 文件位置" style="max-width: 100%; border-radius: var(--radius-md); border: 1px solid var(--border-primary); margin: 12px 0;" loading="lazy" />
+
+                            <div class="notice notice-tip">
+                                <strong>✅ 验证成功：</strong>配置完成后，在 VS Code / Cursor 中打开 Claude Code 面板，如果能正常对话则说明配置成功。如果仍无法使用，请检查控制台钱包余额是否充足。
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- macOS (same content) -->
+                <div class="platform-content" data-platform="macos">
+                    <section class="intro-card">
+                        <h2>在 VS Code / Cursor 等支持 Claude Code 插件的 IDE 中使用 Claude Code</h2>
+                        <p>VS Code 和 Cursor 的配置方式完全一致，按以下步骤配置即可通过 API 中转使用 Claude Code 插件。</p>
+                        <div class="feature-list">
+                            <div class="feature-item">
+                                <span class="feature-icon">🔌</span>
+                                <span>Claude Code 官方插件</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">⚙️</span>
+                                <span>CC Switch 一键配置</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">🚀</span>
+                                <span>无需官方账号登录</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">💡</span>
+                                <span>VS Code / Cursor 通用</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">1</span>
+                            <span>安装 Claude Code 插件</span>
+                        </h2>
+                        <div class="step-content">
+                            <p>在 VS Code 或 Cursor 的扩展商店中搜索 <strong>Claude Code</strong>（由 Anthropic 官方发布），点击安装。</p>
+                            <div class="notice notice-info">
+                                <strong>💡 提示：</strong>VS Code 和 Cursor 的配置方式完全一致，以下步骤通用。
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">2</span>
+                            <span>安装 CC Switch 配置工具</span>
+                        </h2>
+                        <div class="step-content">
+                            <p><a href="https://github.com/farion1231/cc-switch/releases/latest" target="_blank">CC Switch</a> 是一个开源桌面应用，可以一键配置 Claude Code 的 API 中转地址和密钥。</p>
+                            <p>前往 <a href="https://github.com/farion1231/cc-switch/releases/latest" target="_blank">GitHub Releases</a> 下载对应平台的安装包：</p>
+                            <ul style="margin: 8px 0 12px 20px; color: var(--text-secondary);">
+                                <li>Windows：下载 <code>.exe</code> 或 <code>.msi</code> 安装包</li>
+                                <li>macOS：下载 <code>.dmg</code> 安装包</li>
+                                <li>Linux：下载 <code>.AppImage</code> 或 <code>.deb</code></li>
+                            </ul>
+                            <div class="notice notice-warning">
+                                <strong>⚠️ 安装时遇到安全提示？</strong>
+                                <strong style="font-weight:400;">macOS：</strong>提示"无法验证开发者"时，前往「系统设置 → 隐私与安全性」，找到 CC Switch 点击「仍要打开」。<br>
+                                <strong style="font-weight:400;">Windows：</strong>弹出 SmartScreen 提示时，点击「更多信息」→「仍要运行」。<br>
+                                <strong style="font-weight:400;">Linux：</strong>AppImage 需要先赋予执行权限：<code>chmod +x cc-switch-*.AppImage</code>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">3</span>
+                            <span>配置 API 中转</span>
+                        </h2>
+                        <div class="step-content">
+                            <p>打开 CC Switch，添加一个新的 Provider：</p>
+                            <ul style="margin: 8px 0 12px 20px; color: var(--text-secondary);">
+                                <li>API Base URL 填写：<code>https://api.augmentproxy.top</code></li>
+                                <li>API Key 填写你在控制台获取的密钥</li>
+                                <li>在设置中开启「应用到 Claude Code 插件」选项</li>
+                            </ul>
+                            <p>配置完成后，CC Switch 会自动将中转地址写入 Claude Code 的配置中。</p>
+                            <img src="images/cc-switch-settings.jpg" alt="CC Switch 设置 - 应用到 Claude Code 插件" style="max-width: 100%; border-radius: var(--radius-md); border: 1px solid var(--border-primary); margin: 12px 0;" loading="lazy" />
+                        </div>
+                    </section>
+
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">4</span>
+                            <span>跳过官方登录页面</span>
+                        </h2>
+                        <div class="step-content">
+                            <p>使用 API 中转时，需要跳过 Claude 官方的登录验证。通常 CC Switch 配置后即可自动跳过，如果仍然弹出登录页面，请按顺序尝试以下方法：</p>
+
+                            <h4 style="margin: 16px 0 8px; color: var(--text-primary);">方法一：修改 config.json</h4>
+                            <p>创建或编辑 <code>~/.claude/config.json</code>，写入以下内容后重启插件：</p>
+                            <pre class="code-block"><code class="language-json">{
+    "primaryApiKey": "augmentproxytop"
+}</code></pre>
+                            <img src="images/config-json.jpg" alt="在 ~/.claude/config.json 中设置 primaryApiKey" style="max-width: 100%; border-radius: var(--radius-md); border: 1px solid var(--border-primary); margin: 12px 0;" loading="lazy" />
+
+                            <h4 style="margin: 16px 0 8px; color: var(--text-primary);">方法二：禁用登录提示</h4>
+                            <p>在 VS Code / Cursor 设置中搜索 <code>Claude Code</code>，勾选 <strong>Disable Login Prompt</strong> 选项。</p>
+                            <img src="images/disable-login-prompt.jpg" alt="在 VS Code 设置中勾选 Claude Code: Disable Login Prompt" style="max-width: 100%; border-radius: var(--radius-md); border: 1px solid var(--border-primary); margin: 12px 0;" loading="lazy" />
+
+                            <h4 style="margin: 16px 0 8px; color: var(--text-primary);">方法三：跳过初次安装引导</h4>
+                            <p>在 <code>~/.claude.json</code>（与 <code>.claude</code> 文件夹同级）中添加以下字段：</p>
+                            <pre class="code-block"><code class="language-json">{
+    "hasCompletedOnboarding": true
+}</code></pre>
+                            <img src="images/claude-json-location.jpg" alt=".claude.json 文件位置" style="max-width: 100%; border-radius: var(--radius-md); border: 1px solid var(--border-primary); margin: 12px 0;" loading="lazy" />
+
+                            <div class="notice notice-tip">
+                                <strong>✅ 验证成功：</strong>配置完成后，在 VS Code / Cursor 中打开 Claude Code 面板，如果能正常对话则说明配置成功。如果仍无法使用，请检查控制台钱包余额是否充足。
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Linux (same content) -->
+                <div class="platform-content" data-platform="linux">
+                    <section class="intro-card">
+                        <h2>在 VS Code / Cursor 等支持 Claude Code 插件的 IDE 中使用 Claude Code</h2>
+                        <p>VS Code 和 Cursor 的配置方式完全一致，按以下步骤配置即可通过 API 中转使用 Claude Code 插件。</p>
+                        <div class="feature-list">
+                            <div class="feature-item">
+                                <span class="feature-icon">🔌</span>
+                                <span>Claude Code 官方插件</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">⚙️</span>
+                                <span>CC Switch 一键配置</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">🚀</span>
+                                <span>无需官方账号登录</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">💡</span>
+                                <span>VS Code / Cursor 通用</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">1</span>
+                            <span>安装 Claude Code 插件</span>
+                        </h2>
+                        <div class="step-content">
+                            <p>在 VS Code 或 Cursor 的扩展商店中搜索 <strong>Claude Code</strong>（由 Anthropic 官方发布），点击安装。</p>
+                            <div class="notice notice-info">
+                                <strong>💡 提示：</strong>VS Code 和 Cursor 的配置方式完全一致，以下步骤通用。
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">2</span>
+                            <span>安装 CC Switch 配置工具</span>
+                        </h2>
+                        <div class="step-content">
+                            <p><a href="https://github.com/farion1231/cc-switch/releases/latest" target="_blank">CC Switch</a> 是一个开源桌面应用，可以一键配置 Claude Code 的 API 中转地址和密钥。</p>
+                            <p>前往 <a href="https://github.com/farion1231/cc-switch/releases/latest" target="_blank">GitHub Releases</a> 下载对应平台的安装包：</p>
+                            <ul style="margin: 8px 0 12px 20px; color: var(--text-secondary);">
+                                <li>Windows：下载 <code>.exe</code> 或 <code>.msi</code> 安装包</li>
+                                <li>macOS：下载 <code>.dmg</code> 安装包</li>
+                                <li>Linux：下载 <code>.AppImage</code> 或 <code>.deb</code></li>
+                            </ul>
+                            <div class="notice notice-warning">
+                                <strong>⚠️ 安装时遇到安全提示？</strong>
+                                <strong style="font-weight:400;">Linux：</strong>AppImage 需要先赋予执行权限：<code>chmod +x cc-switch-*.AppImage</code><br>
+                                <strong style="font-weight:400;">Windows：</strong>弹出 SmartScreen 提示时，点击「更多信息」→「仍要运行」。<br>
+                                <strong style="font-weight:400;">macOS：</strong>提示"无法验证开发者"时，前往「系统设置 → 隐私与安全性」，找到 CC Switch 点击「仍要打开」。
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">3</span>
+                            <span>配置 API 中转</span>
+                        </h2>
+                        <div class="step-content">
+                            <p>打开 CC Switch，添加一个新的 Provider：</p>
+                            <ul style="margin: 8px 0 12px 20px; color: var(--text-secondary);">
+                                <li>API Base URL 填写：<code>https://api.augmentproxy.top</code></li>
+                                <li>API Key 填写你在控制台获取的密钥</li>
+                                <li>在设置中开启「应用到 Claude Code 插件」选项</li>
+                            </ul>
+                            <p>配置完成后，CC Switch 会自动将中转地址写入 Claude Code 的配置中。</p>
+                            <img src="images/cc-switch-settings.jpg" alt="CC Switch 设置 - 应用到 Claude Code 插件" style="max-width: 100%; border-radius: var(--radius-md); border: 1px solid var(--border-primary); margin: 12px 0;" loading="lazy" />
+                        </div>
+                    </section>
+
+                    <section class="step-card">
+                        <h2 class="step-title">
+                            <span class="step-number">4</span>
+                            <span>跳过官方登录页面</span>
+                        </h2>
+                        <div class="step-content">
+                            <p>使用 API 中转时，需要跳过 Claude 官方的登录验证。通常 CC Switch 配置后即可自动跳过，如果仍然弹出登录页面，请按顺序尝试以下方法：</p>
+
+                            <h4 style="margin: 16px 0 8px; color: var(--text-primary);">方法一：修改 config.json</h4>
+                            <p>创建或编辑 <code>~/.claude/config.json</code>，写入以下内容后重启插件：</p>
+                            <pre class="code-block"><code class="language-json">{
+    "primaryApiKey": "augmentproxytop"
+}</code></pre>
+                            <img src="images/config-json.jpg" alt="在 ~/.claude/config.json 中设置 primaryApiKey" style="max-width: 100%; border-radius: var(--radius-md); border: 1px solid var(--border-primary); margin: 12px 0;" loading="lazy" />
+
+                            <h4 style="margin: 16px 0 8px; color: var(--text-primary);">方法二：禁用登录提示</h4>
+                            <p>在 VS Code / Cursor 设置中搜索 <code>Claude Code</code>，勾选 <strong>Disable Login Prompt</strong> 选项。</p>
+                            <img src="images/disable-login-prompt.jpg" alt="在 VS Code 设置中勾选 Claude Code: Disable Login Prompt" style="max-width: 100%; border-radius: var(--radius-md); border: 1px solid var(--border-primary); margin: 12px 0;" loading="lazy" />
+
+                            <h4 style="margin: 16px 0 8px; color: var(--text-primary);">方法三：跳过初次安装引导</h4>
+                            <p>在 <code>~/.claude.json</code>（与 <code>.claude</code> 文件夹同级）中添加以下字段：</p>
+                            <pre class="code-block"><code class="language-json">{
+    "hasCompletedOnboarding": true
+}</code></pre>
+                            <img src="images/claude-json-location.jpg" alt=".claude.json 文件位置" style="max-width: 100%; border-radius: var(--radius-md); border: 1px solid var(--border-primary); margin: 12px 0;" loading="lazy" />
+
+                            <div class="notice notice-tip">
+                                <strong>✅ 验证成功：</strong>配置完成后，在 VS Code / Cursor 中打开 Claude Code 面板，如果能正常对话则说明配置成功。如果仍无法使用，请检查控制台钱包余额是否充足。
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <!-- QR Modal (CN mode only) -->
+    <div class="modal-overlay mode-cn" id="qrModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <img loading="lazy" src="images/wechat-qr.jpg" alt="微信二维码" class="qr-large">
+            <p class="qr-label"><span data-i18n="support.qrLabel">售后技术支持 微信号：</span><strong data-i18n="support.wechatId">kissman911</strong></p>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <!-- Prism.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-powershell.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+
+    <!-- Site Mode Detection (must load before i18n and main) -->
+    <script src="js/site-mode.js?v=1"></script>
+
+    <!-- i18n Script -->
+    <script src="js/i18n.js?v=2"></script>
+
+    <!-- Main Script -->
+    <script src="js/main.js?v=3"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"7bd4b7d412124103acf073cb46ece0eb","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
+

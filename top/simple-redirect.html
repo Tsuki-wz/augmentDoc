@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 编程工具安装教程</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .tab-buttons { display: flex; gap: 10px; margin: 20px 0; flex-wrap: wrap; }
+        .tab-btn { padding: 10px 20px; border: 1px solid #ddd; background: white; cursor: pointer; border-radius: 5px; }
+        .tab-btn.active { background: #007bff; color: white; }
+        .tab-content { display: none; padding: 20px; border: 1px solid #ddd; border-radius: 5px; }
+        .tab-content.active { display: block; }
+        .platform-tabs { display: flex; gap: 10px; margin: 15px 0; }
+        .platform-btn { padding: 8px 16px; border: 1px solid #ddd; background: white; cursor: pointer; border-radius: 3px; }
+        .platform-btn.active { background: #28a745; color: white; }
+        .platform-content { display: none; }
+        .platform-content.active { display: block; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 6px; border-radius: 3px; }
+        h1, h2, h3 { color: #333; }
+        .note { background: #fff3cd; padding: 15px; border-left: 4px solid #ffc107; margin: 15px 0; }
+        .tip { background: #d1ecf1; padding: 15px; border-left: 4px solid #17a2b8; margin: 15px 0; }
+    </style>
+</head>
+<body>
+    <h1>AI 编程工具安装教程</h1>
+    <p>内容来源：<a href="https://kissapi.ai/tutorial" target="_blank">kissapi.ai/tutorial</a></p>
+    
+    <div class="tab-buttons">
+        <button class="tab-btn active" onclick="showTab('claude')">Claude Code CLI</button>
+        <button class="tab-btn" onclick="showTab('openclaw')">OpenClaw</button>
+        <button class="tab-btn" onclick="showTab('ccswitch')">CC-Switch</button>
+        <button class="tab-btn" onclick="showTab('opencode')">Opencode</button>
+        <button class="tab-btn" onclick="showTab('vscode')">VS Code/Cursor</button>
+    </div>
+
+    <div id="claude" class="tab-content active">
+        <h2>Claude Code CLI</h2>
+        <p>请访问原网站查看完整教程：<a href="https://kissapi.ai/tutorial" target="_blank">https://kissapi.ai/tutorial</a></p>
+    </div>
+
+    <div id="openclaw" class="tab-content">
+        <h2>OpenClaw</h2>
+        <p>请访问原网站查看完整教程：<a href="https://kissapi.ai/tutorial" target="_blank">https://kissapi.ai/tutorial</a></p>
+    </div>
+
+    <div id="ccswitch" class="tab-content">
+        <h2>CC-Switch</h2>
+        <p>请访问原网站查看完整教程：<a href="https://kissapi.ai/tutorial" target="_blank">https://kissapi.ai/tutorial</a></p>
+    </div>
+
+    <div id="opencode" class="tab-content">
+        <h2>Opencode</h2>
+        <p>请访问原网站查看完整教程：<a href="https://kissapi.ai/tutorial" target="_blank">https://kissapi.ai/tutorial</a></p>
+    </div>
+
+    <div id="vscode" class="tab-content">
+        <h2>VS Code/Cursor 插件</h2>
+        <p>请访问原网站查看完整教程：<a href="https://kissapi.ai/tutorial" target="_blank">https://kissapi.ai/tutorial</a></p>
+    </div>
+
+    <script>
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
