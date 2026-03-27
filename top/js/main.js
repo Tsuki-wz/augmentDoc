@@ -85,6 +85,8 @@
     const supportQr = document.getElementById('supportQr');
     const qrModal = document.getElementById('qrModal');
     const modalClose = document.getElementById('modalClose');
+    const urlNoticeModal = document.getElementById('urlNoticeModal');
+    const urlNoticeConfirm = document.getElementById('urlNoticeConfirm');
     const toast = document.getElementById('toast');
 
     // =========================================
@@ -375,6 +377,47 @@
     }
 
     // =========================================
+    // URL Notice Modal
+    // =========================================
+
+    function openUrlNoticeModal() {
+        if (!urlNoticeModal) return;
+        urlNoticeModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeUrlNoticeModal() {
+        if (!urlNoticeModal) return;
+        urlNoticeModal.classList.remove('active');
+
+        // Restore scroll only when no overlay modal remains open
+        const anyActiveModal = document.querySelector('.modal-overlay.active');
+        document.body.style.overflow = anyActiveModal ? 'hidden' : '';
+    }
+
+    function initUrlNoticeModal() {
+        if (!urlNoticeModal) return;
+
+        openUrlNoticeModal();
+
+        if (urlNoticeConfirm) {
+            urlNoticeConfirm.addEventListener('click', closeUrlNoticeModal);
+        }
+
+        urlNoticeModal.addEventListener('click', (e) => {
+            if (e.target === urlNoticeModal) {
+                closeUrlNoticeModal();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && urlNoticeModal.classList.contains('active')) {
+                closeUrlNoticeModal();
+            }
+        });
+    }
+
+    // =========================================
     // Toast Notification
     // =========================================
 
@@ -434,9 +477,6 @@
     // =========================================
 
     function init() {
-        // Show URL replacement reminder on page load
-        window.alert('配置中的旧网址替换本网址\n旧的不用了，懒得改了');
-
         // Apply site mode (CN/Global) first
         applySiteMode();
 
@@ -465,6 +505,7 @@
         initEnvTabs();
         initCodeCopy();
         initQrModal();
+        initUrlNoticeModal();
         initJsoncSupport();
 
         // Re-highlight after DOM is fully loaded

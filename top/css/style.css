@@ -1401,6 +1401,48 @@ code[class*="language-"] {
     color: var(--text-secondary);
 }
 
+.notice-modal-content {
+    max-width: 420px;
+    text-align: left;
+}
+
+.notice-modal-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-md);
+}
+
+.notice-modal-message {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.notice-modal-subtext {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-xl);
+}
+
+.notice-modal-btn {
+    width: 100%;
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--radius-md);
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.35);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.notice-modal-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 24px rgba(99, 102, 241, 0.45);
+}
+
 /* ===========================================
    Toast
    =========================================== */
