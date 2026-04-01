@@ -434,9 +434,6 @@
     // =========================================
 
     function init() {
-        // Show URL replacement reminder on page load
-        window.alert('配置中的旧网址替换本网址\n旧的不用了，懒得改了');
-
         // Apply site mode (CN/Global) first
         applySiteMode();
 
