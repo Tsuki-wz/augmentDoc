@@ -68,6 +68,8 @@ powershell -NoProfile -ExecutionPolicy Bypass -File ./patch_augment_windows.ps1
 3.弹出的aug登录页面
 - 方法1
   - 可以直接复制URL，然后进入步骤5
+   如图：
+   ![](images/image2026.png)
 - 方法2
   - 等进入登录页面后，在链接栏右键撤销，进入步骤4
 
