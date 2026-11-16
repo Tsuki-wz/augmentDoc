@@ -1,8 +1,9 @@
 # VsCode / IDEA 使用 AugmentProxy 操作手顺
 ## QQ群
 **1037147027**
+
 **使用前提**
-安装官方augment插件
+- 安装官方augment插件
 ## 一、VsCode 使用说明
 
 ### 1. 打开官网
