@@ -1,6 +1,8 @@
 # VsCode / IDEA 使用 AugmentProxy 操作手顺
 ## QQ群
 **1037147027**
+**使用前提**
+安装官方augment插件
 ## 一、VsCode 使用说明
 
 ### 1. 打开官网
@@ -63,7 +65,11 @@ powershell -NoProfile -ExecutionPolicy Bypass -File ./patch_augment_windows.ps1
 
 ![](images/vs1.png)
 
-3. 弹出的aug登录页面，等进入登录页面后，在链接栏右键撤销
+3.弹出的aug登录页面
+- 方法1
+  - 可以直接复制URL，然后进入步骤5
+- 方法2
+  - 等进入登录页面后，在链接栏右键撤销，进入步骤4
 
 ![](images/vs2.png)
 
