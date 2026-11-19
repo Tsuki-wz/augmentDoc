@@ -4,6 +4,8 @@
 
 **使用前提**
 - 安装官方augment插件
+![](images/aug插件.png)
+
 ## 一、VsCode 使用说明
 
 ### 1. 打开官网
